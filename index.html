@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Express - Descubra Por Que Seu Site Nao Aparece no Google | Auditoria Gratis</title>
+<meta name="description" content="Ferramenta gratuita de auditoria SEO. Cole a URL do seu site e receba um relatorio completo com score, problemas e recomendacoes em 60 segundos.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://seoexpress.com.br/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://seoexpress.com.br/">
+<meta property="og:title" content="SEO Express - Auditoria SEO Gratuita com IA">
+<meta property="og:description" content="Cole a URL do seu site e receba um relatorio completo com score, problemas e recomendacoes em 60 segundos. 100% gratis.">
+<meta property="og:image" content="https://seoexpress.com.br/og-image.png">
+<meta property="og:locale" content="pt_BR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SEO Express - Auditoria SEO Gratuita com IA">
+<meta name="twitter:description" content="Cole a URL do seu site e receba um relatorio completo com score, problemas e recomendacoes em 60 segundos.">
+<meta name="twitter:image" content="https://seoexpress.com.br/og-image.png">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SEO Express",
+  "url": "https://seoexpress.com.br",
+  "description": "Ferramenta gratuita de auditoria SEO com inteligencia artificial. Analise completa em 60 segundos.",
+  "applicationCategory": "SEO Tool",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "BRL"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Sakaguchi IA"
+  }
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PT9ZF79K');</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--accent:#00c853;--accent-light:#69f0ae;--text:#ffffff;
+  --text-muted:#a0a0a0;--card:#111111;--border:rgba(255,255,255,0.08);
+  --red:#ff1744;--yellow:#ffd600;--orange:#ff9100;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:var(--accent-light)}
+
+/* ===== NAV ===== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(10,10,10,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{display:flex;align-items:baseline;gap:2px;font-size:1.25rem;font-weight:700}
+.nav-logo .seo{color:var(--accent)}
+.nav-logo .express{color:var(--text)}
+.nav-logo .by{font-size:0.65rem;color:var(--text-muted);font-weight:400;margin-left:8px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{color:var(--text-muted);font-size:0.875rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  background:var(--accent);color:#0a0a0a;font-weight:600;font-size:0.875rem;
+  padding:8px 20px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;
+}
+.nav-cta:hover{background:var(--accent-light);transform:translateY(-1px)}
+.nav-hamburger{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:120px 24px 80px;text-align:center;position:relative;
+}
+.hero::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:800px;height:800px;
+  background:radial-gradient(circle,rgba(0,200,83,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,200,83,0.08);border:1px solid rgba(0,200,83,0.2);
+  border-radius:100px;padding:8px 20px;font-size:0.8rem;color:var(--accent-light);
+  margin-bottom:32px;
+}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{
+  font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.15;
+  max-width:800px;margin-bottom:20px;
+  background:linear-gradient(135deg,#fff 60%,var(--accent-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--text-muted);max-width:600px;margin-bottom:48px}
+
+/* ===== INPUT BAR ===== */
+.input-bar{
+  display:flex;align-items:center;width:100%;max-width:680px;
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:6px 6px 6px 24px;transition:border-color .3s,box-shadow .3s;
+}
+.input-bar:focus-within{border-color:rgba(0,200,83,0.4);box-shadow:0 0 0 4px rgba(0,200,83,0.08)}
+.input-bar input{
+  flex:1;background:transparent;border:none;outline:none;color:var(--text);
+  font-size:1rem;padding:14px 0;
+}
+.input-bar input::placeholder{color:#555}
+.input-bar .btn-analyze{
+  background:var(--accent);color:#0a0a0a;font-weight:700;font-size:1rem;
+  padding:14px 32px;border-radius:12px;border:none;cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+}
+.input-bar .btn-analyze:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,200,83,0.25)}
+.input-bar .btn-analyze:active{transform:translateY(0)}
+.input-bar .btn-analyze:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+
+.trust-badges{display:flex;gap:24px;margin-top:32px;flex-wrap:wrap;justify-content:center}
+.trust-badge{
+  display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text-muted);
+}
+.trust-badge svg{width:16px;height:16px;fill:var(--accent)}
+
+/* ===== LOADING ===== */
+.loading-section{
+  display:none;min-height:60vh;flex-direction:column;align-items:center;
+  justify-content:center;padding:120px 24px 80px;
+}
+.loading-section.active{display:flex}
+.loading-card{
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:48px;max-width:560px;width:100%;
+}
+.loading-url{
+  font-size:0.85rem;color:var(--text-muted);margin-bottom:24px;
+  word-break:break-all;text-align:center;
+}
+.loading-url span{color:var(--accent)}
+.loading-steps{list-style:none;display:flex;flex-direction:column;gap:16px;margin-bottom:32px}
+.loading-step{display:flex;align-items:center;gap:12px;font-size:0.95rem;color:#555;transition:color .3s}
+.loading-step.active{color:var(--text-muted)}
+.loading-step.done{color:var(--accent)}
+.step-icon{
+  width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;border:2px solid #333;transition:all .3s;font-size:0.7rem;
+}
+.loading-step.active .step-icon{border-color:var(--accent);animation:spin 1s linear infinite}
+.loading-step.active .step-icon::after{content:'';width:8px;height:8px;border-radius:50%;border:2px solid var(--accent);border-top-color:transparent;animation:spin 0.8s linear infinite}
+.loading-step.done .step-icon{border-color:var(--accent);background:var(--accent);color:#0a0a0a}
+.loading-step.done .step-icon::after{content:'\2713';animation:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-progress{
+  height:4px;background:#1a1a1a;border-radius:4px;overflow:hidden;margin-bottom:12px;
+}
+.loading-progress-bar{
+  height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-light));
+  border-radius:4px;width:0%;transition:width .5s ease;
+}
+.loading-time{font-size:0.8rem;color:#555;text-align:center}
+
+/* ===== RESULTS ===== */
+.results-section{display:none;padding:80px 24px 0}
+.results-section.active{display:block}
+.results-inner{max-width:1100px;margin:0 auto}
+
+/* Score Gauge */
+.score-header{text-align:center;margin-bottom:60px;padding-top:40px}
+.score-header .url-analyzed{font-size:0.9rem;color:var(--text-muted);margin-bottom:24px}
+.score-header .url-analyzed span{color:var(--accent)}
+.gauge-wrap{position:relative;width:220px;height:220px;margin:0 auto 24px}
+.gauge-svg{width:220px;height:220px;transform:rotate(-90deg)}
+.gauge-bg{fill:none;stroke:#1a1a1a;stroke-width:12}
+.gauge-fill{fill:none;stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease,stroke .5s}
+.gauge-score{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:3.5rem;font-weight:800;
+}
+.gauge-label{font-size:1rem;color:var(--text-muted)}
+
+/* Grade Cards */
+.grade-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+.grade-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:28px 20px;text-align:center;transition:transform .2s,border-color .2s;
+}
+.grade-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.12)}
+.grade-card .grade-letter{font-size:2.5rem;font-weight:800;line-height:1}
+.grade-card .grade-score{font-size:0.85rem;color:var(--text-muted);margin:4px 0 8px}
+.grade-card .grade-label{font-size:0.8rem;color:#666;text-transform:uppercase;letter-spacing:1px}
+
+/* Problems */
+.problems-section{margin-bottom:48px}
+.section-title{
+  font-size:1.5rem;font-weight:700;margin-bottom:24px;display:flex;align-items:center;gap:12px;
+}
+.section-title .count{
+  background:rgba(255,23,68,0.12);color:var(--red);font-size:0.8rem;
+  padding:4px 12px;border-radius:100px;font-weight:600;
+}
+.problem-list{display:flex;flex-direction:column;gap:8px}
+.problem-item{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:16px 20px;transition:border-color .2s;
+}
+.problem-item:hover{border-color:rgba(255,255,255,0.12)}
+.problem-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.problem-dot.critical{background:var(--red)}
+.problem-dot.warning{background:var(--yellow)}
+.problem-dot.info{background:var(--accent)}
+.problem-text{flex:1}
+.problem-text strong{display:block;font-size:0.95rem;margin-bottom:2px}
+.problem-text span{font-size:0.85rem;color:var(--text-muted)}
+
+/* AI Analysis */
+.ai-analysis{
+  background:linear-gradient(135deg,rgba(0,200,83,0.05),rgba(0,200,83,0.02));
+  border:1px solid rgba(0,200,83,0.15);border-radius:20px;
+  padding:36px;margin-bottom:48px;
+}
+.ai-analysis-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.ai-analysis-header .ai-icon{
+  width:36px;height:36px;border-radius:10px;background:rgba(0,200,83,0.12);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.ai-analysis-header h3{font-size:1.2rem;font-weight:700}
+.ai-analysis-body{font-size:0.95rem;line-height:1.8;color:var(--text-muted)}
+.ai-analysis-body p{margin-bottom:12px}
+.ai-analysis-body strong{color:var(--text)}
+.ai-analysis-body ul{margin:8px 0 12px 20px}
+.ai-analysis-body li{margin-bottom:4px}
+
+/* CTA */
+.results-cta{
+  text-align:center;padding:60px 0;margin-bottom:48px;
+  background:linear-gradient(135deg,rgba(0,200,83,0.04),transparent);
+  border-radius:24px;border:1px solid var(--border);
+}
+.results-cta h2{font-size:1.8rem;font-weight:800;margin-bottom:12px}
+.results-cta p{color:var(--text-muted);margin-bottom:28px;font-size:1rem}
+.btn-whatsapp{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25d366;color:#fff;font-weight:700;font-size:1rem;
+  padding:16px 36px;border-radius:14px;border:none;cursor:pointer;
+  transition:all .2s;text-decoration:none;
+}
+.btn-whatsapp:hover{background:#20bd5a;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3);color:#fff}
+.btn-whatsapp svg{width:20px;height:20px;fill:#fff}
+
+/* Plans */
+.plans-section{margin-bottom:80px}
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.plan-card{
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:32px 24px;text-align:center;transition:transform .2s,border-color .2s;position:relative;
+}
+.plan-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.15)}
+.plan-card.featured{border-color:rgba(0,200,83,0.3)}
+.plan-card.featured::before{
+  content:'Popular';position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#0a0a0a;font-size:0.7rem;font-weight:700;
+  padding:4px 16px;border-radius:100px;text-transform:uppercase;letter-spacing:1px;
+}
+.plan-card h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.plan-price{font-size:2rem;font-weight:800;color:var(--accent);margin-bottom:4px}
+.plan-price .period{font-size:0.8rem;font-weight:400;color:var(--text-muted)}
+.plan-desc{font-size:0.85rem;color:var(--text-muted);margin-bottom:20px}
+.plan-features{list-style:none;text-align:left;margin-bottom:24px}
+.plan-features li{
+  font-size:0.85rem;color:var(--text-muted);padding:6px 0;
+  border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;
+}
+.plan-features li::before{content:'\2713';color:var(--accent);font-weight:700;font-size:0.75rem}
+.plan-btn{
+  width:100%;padding:12px;border-radius:10px;font-weight:600;font-size:0.9rem;
+  cursor:pointer;transition:all .2s;border:none;
+}
+.plan-btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.plan-btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.plan-btn-fill{background:var(--accent);color:#0a0a0a}
+.plan-btn-fill:hover{background:var(--accent-light)}
+
+/* ===== HOW IT WORKS ===== */
+.how-section{padding:100px 24px;border-top:1px solid var(--border)}
+.how-inner{max-width:1000px;margin:0 auto;text-align:center}
+.how-inner h2{font-size:2rem;font-weight:800;margin-bottom:60px}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.how-step{position:relative}
+.how-step-num{
+  width:56px;height:56px;border-radius:16px;background:rgba(0,200,83,0.08);
+  border:1px solid rgba(0,200,83,0.2);display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;font-weight:800;color:var(--accent);margin:0 auto 20px;
+}
+.how-step h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.how-step p{font-size:0.9rem;color:var(--text-muted)}
+.how-arrow{
+  position:absolute;top:28px;right:-28px;color:#333;font-size:1.5rem;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  border-top:1px solid var(--border);padding:48px 24px;text-align:center;
+}
+.footer-inner{max-width:1000px;margin:0 auto}
+.footer-logo{font-size:1.1rem;font-weight:700;margin-bottom:16px}
+.footer-logo .seo{color:var(--accent)}
+.footer-logo .by{font-size:0.7rem;color:var(--text-muted);font-weight:400;margin-left:8px}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+.footer-links a{color:var(--text-muted);font-size:0.85rem}
+.footer-links a:hover{color:var(--text)}
+.footer-copy{font-size:0.8rem;color:#444}
+
+/* ===== ERROR ===== */
+.error-msg{
+  display:none;background:rgba(255,23,68,0.08);border:1px solid rgba(255,23,68,0.2);
+  border-radius:12px;padding:16px 24px;margin-top:16px;max-width:680px;
+  color:var(--red);font-size:0.9rem;text-align:center;
+}
+.error-msg.active{display:block}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .grade-cards{grid-template-columns:repeat(2,1fr)}
+  .plans-grid{grid-template-columns:repeat(2,1fr)}
+  .how-steps{grid-template-columns:1fr;gap:32px}
+  .how-arrow{display:none}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-hamburger{display:block}
+  .nav-links.open{
+    display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;
+    background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);padding:24px;gap:20px;
+    border-bottom:1px solid var(--border);
+  }
+  .hero h1{font-size:1.75rem}
+  .input-bar{flex-direction:column;padding:12px}
+  .input-bar input{width:100%;padding:12px;text-align:center}
+  .input-bar .btn-analyze{width:100%;padding:14px}
+  .grade-cards{grid-template-columns:repeat(2,1fr)}
+  .plans-grid{grid-template-columns:1fr}
+  .trust-badges{gap:16px}
+  .loading-card{padding:28px 20px}
+  .ai-analysis{padding:24px}
+  .results-cta{padding:40px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PT9ZF79K"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Navegacao principal">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="SEO Express - Pagina inicial">
+      <span class="seo">SEO</span><span class="express">Express</span>
+      <span class="by">by Sakaguchi IA</span>
+    </a>
+    <button class="nav-hamburger" aria-label="Abrir menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="https://wa.me/5511996591308?text=Oi! Quero saber mais sobre o SEO Express." target="_blank" rel="noopener">Contato</a></li>
+      <li><button class="nav-cta" onclick="document.getElementById('url-input').focus()">Analisar gratis</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero-section">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Powered by IA + Google PageSpeed
+  </div>
+  <h1>Descubra por que seu site nao aparece no Google</h1>
+  <p class="hero-sub">Cole a URL, receba um relatorio completo em 60 segundos. Gratis, sem cadastro.</p>
+
+  <div class="input-bar" role="search" aria-label="Analisar site">
+    <input type="url" id="url-input" placeholder="www.seusite.com.br" aria-label="URL do site para analise" autocomplete="url">
+    <button class="btn-analyze" id="btn-analyze" aria-label="Iniciar analise SEO">Analisar</button>
+  </div>
+  <div class="error-msg" id="error-msg" role="alert"></div>
+
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.18L20 8.5v7l-8 4-8-4v-7l8-4.32z"/></svg>
+      Google PageSpeed
+    </div>
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+      100% gratis
+    </div>
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>
+      Sem cadastro
+    </div>
+  </div>
+</section>
+
+<!-- LOADING -->
+<section class="loading-section" id="loading-section" aria-label="Progresso da analise" aria-live="polite">
+  <div class="loading-card">
+    <div class="loading-url">Analisando <span id="loading-url-display"></span></div>
+    <ul class="loading-steps" id="loading-steps">
+      <li class="loading-step" data-step="0">
+        <span class="step-icon"></span>
+        Acessando o site...
+      </li>
+      <li class="loading-step" data-step="1">
+        <span class="step-icon"></span>
+        Analisando meta tags e conteudo...
+      </li>
+      <li class="loading-step" data-step="2">
+        <span class="step-icon"></span>
+        Verificando velocidade (Google PageSpeed)...
+      </li>
+      <li class="loading-step" data-step="3">
+        <span class="step-icon"></span>
+        Analisando autoridade do dominio...
+      </li>
+      <li class="loading-step" data-step="4">
+        <span class="step-icon"></span>
+        Gerando relatorio com IA...
+      </li>
+    </ul>
+    <div class="loading-progress"><div class="loading-progress-bar" id="loading-bar"></div></div>
+    <div class="loading-time">Isso leva cerca de 60 segundos</div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section" id="results-section" aria-label="Resultados da auditoria SEO">
+  <div class="results-inner">
+
+    <!-- Score -->
+    <div class="score-header">
+      <div class="url-analyzed">Resultado para <span id="result-url"></span></div>
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 220 220" aria-hidden="true">
+          <circle class="gauge-bg" cx="110" cy="110" r="96"/>
+          <circle class="gauge-fill" id="gauge-fill" cx="110" cy="110" r="96"
+            stroke-dasharray="603.19" stroke-dashoffset="603.19"/>
+        </svg>
+        <div class="gauge-score" id="gauge-score" aria-label="Pontuacao geral">0</div>
+      </div>
+      <div class="gauge-label" id="gauge-label">Pontuacao Geral</div>
+    </div>
+
+    <!-- Grade Cards -->
+    <div class="grade-cards" id="grade-cards" role="list" aria-label="Notas por categoria"></div>
+
+    <!-- Problems -->
+    <div class="problems-section">
+      <h2 class="section-title">Problemas encontrados <span class="count" id="problems-count">0</span></h2>
+      <div class="problem-list" id="problem-list" role="list" aria-label="Lista de problemas"></div>
+    </div>
+
+    <!-- AI Analysis -->
+    <div class="ai-analysis">
+      <div class="ai-analysis-header">
+        <div class="ai-icon" aria-hidden="true">&#9889;</div>
+        <h3>Analise com Inteligencia Artificial</h3>
+      </div>
+      <div class="ai-analysis-body" id="ai-analysis-body"></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="results-cta">
+      <h2>Quer corrigir tudo isso?</h2>
+      <p>Nosso time cuida de todo o SEO tecnico, conteudo e performance do seu site.</p>
+      <a href="https://wa.me/5511996591308?text=Vi o relatorio do SEO Express e quero corrigir meu site." target="_blank" rel="noopener" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.37 0-4.567-.82-6.293-2.188l-.44-.363-3.18 1.066 1.066-3.18-.363-.44A9.955 9.955 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+
+    <!-- Plans -->
+    <div class="plans-section" id="planos">
+      <h2 class="section-title" style="justify-content:center">Planos</h2>
+      <div class="plans-grid">
+        <div class="plan-card">
+          <h3>Auditoria</h3>
+          <div class="plan-price">Gratis</div>
+          <div class="plan-desc">O que voce acabou de fazer</div>
+          <ul class="plan-features">
+            <li>Score geral do site</li>
+            <li>Lista de problemas</li>
+            <li>Analise com IA</li>
+            <li>4 categorias avaliadas</li>
+          </ul>
+          <button class="plan-btn plan-btn-outline" onclick="document.getElementById('url-input').focus();window.scrollTo({top:0,behavior:'smooth'})">Usar gratis</button>
+        </div>
+        <div class="plan-card">
+          <h3>Relatorio PDF</h3>
+          <div class="plan-price">R$ 97</div>
+          <div class="plan-desc">Pagamento unico</div>
+          <ul class="plan-features">
+            <li>Tudo do plano gratis</li>
+            <li>Relatorio PDF completo</li>
+            <li>Checklist de correcoes</li>
+            <li>Prioridades definidas</li>
+          </ul>
+          <a href="https://wa.me/5511996591308?text=Quero o relatorio PDF do SEO Express." target="_blank" rel="noopener" class="plan-btn plan-btn-outline" style="display:block;text-align:center;text-decoration:none;color:var(--text)">Solicitar</a>
+        </div>
+        <div class="plan-card featured">
+          <h3>Mensal</h3>
+          <div class="plan-price">R$ 497 <span class="period">/mes</span></div>
+          <div class="plan-desc">Monitoramento + correcoes</div>
+          <ul class="plan-features">
+            <li>Tudo do relatorio PDF</li>
+            <li>Monitoramento semanal</li>
+            <li>Correcoes tecnicas</li>
+            <li>Suporte prioritario</li>
+          </ul>
+          <a href="https://wa.me/5511996591308?text=Quero o plano mensal do SEO Express." target="_blank" rel="noopener" class="plan-btn plan-btn-fill" style="display:block;text-align:center;text-decoration:none">Comecar agora</a>
+        </div>
+        <div class="plan-card">
+          <h3>Premium</h3>
+          <div class="plan-price">R$ 997 <span class="period">/mes</span></div>
+          <div class="plan-desc">Tudo + conteudo SEO com IA</div>
+          <ul class="plan-features">
+            <li>Tudo do plano mensal</li>
+            <li>Conteudo otimizado com IA</li>
+            <li>Link building</li>
+            <li>Relatorio executivo mensal</li>
+          </ul>
+          <a href="https://wa.me/5511996591308?text=Quero o plano premium do SEO Express." target="_blank" rel="noopener" class="plan-btn plan-btn-outline" style="display:block;text-align:center;text-decoration:none;color:var(--text)">Falar com especialista</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="como-funciona">
+  <div class="how-inner">
+    <h2>Como funciona</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <h3>Cole a URL</h3>
+        <p>Insira o endereco do site que deseja analisar. Pode ser qualquer pagina.</p>
+        <span class="how-arrow" aria-hidden="true">&#8594;</span>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <h3>IA analisa</h3>
+        <p>Nossa inteligencia artificial varre meta tags, velocidade, seguranca e acessibilidade.</p>
+        <span class="how-arrow" aria-hidden="true">&#8594;</span>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <h3>Receba o relatorio</h3>
+        <p>Em 60 segundos voce tem um diagnostico completo com score, problemas e solucoes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <span class="seo">SEO</span><span class="express">Express</span>
+      <span class="by">by Sakaguchi IA</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://sakaguchi.ia.br" target="_blank" rel="noopener">sakaguchi.ia.br</a>
+      <a href="https://wa.me/5511996591308" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#como-funciona">Como funciona</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 SEO Express. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<script>
+// ===== CONFIGURATION =====
+const BACKEND_URL = 'http://localhost:3000'; // Change for production
+
+// ===== DOM REFS =====
+const urlInput = document.getElementById('url-input');
+const btnAnalyze = document.getElementById('btn-analyze');
+const errorMsg = document.getElementById('error-msg');
+const heroSection = document.getElementById('hero-section');
+const loadingSection = document.getElementById('loading-section');
+const loadingUrlDisplay = document.getElementById('loading-url-display');
+const loadingBar = document.getElementById('loading-bar');
+const loadingSteps = document.querySelectorAll('.loading-step');
+const resultsSection = document.getElementById('results-section');
+const resultUrl = document.getElementById('result-url');
+const gaugeFill = document.getElementById('gauge-fill');
+const gaugeScore = document.getElementById('gauge-score');
+const gaugeLabel = document.getElementById('gauge-label');
+const gradeCards = document.getElementById('grade-cards');
+const problemsCount = document.getElementById('problems-count');
+const problemList = document.getElementById('problem-list');
+const aiBody = document.getElementById('ai-analysis-body');
+
+// ===== HELPERS =====
+function normalizeUrl(raw) {
+  let url = raw.trim();
+  if (!url) return '';
+  if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+  try { new URL(url); return url; } catch { return ''; }
+}
+
+function scoreColor(score) {
+  if (score >= 90) return 'var(--accent)';
+  if (score >= 70) return 'var(--yellow)';
+  if (score >= 50) return 'var(--orange)';
+  return 'var(--red)';
+}
+
+function scoreLetter(score) {
+  if (score >= 90) return 'A';
+  if (score >= 80) return 'B';
+  if (score >= 60) return 'C';
+  if (score >= 40) return 'D';
+  return 'F';
+}
+
+function showError(msg) {
+  errorMsg.textContent = msg;
+  errorMsg.classList.add('active');
+}
+
+function hideError() {
+  errorMsg.classList.remove('active');
+}
+
+// ===== LOADING ANIMATION =====
+let loadingInterval = null;
+let currentStep = 0;
+
+function startLoadingAnimation() {
+  currentStep = 0;
+  loadingSteps.forEach(s => { s.classList.remove('active', 'done'); });
+  loadingBar.style.width = '0%';
+  loadingSteps[0].classList.add('active');
+
+  const stepDurations = [3000, 8000, 20000, 12000, 15000];
+  let elapsed = 0;
+  const totalEstimate = stepDurations.reduce((a, b) => a + b, 0);
+
+  loadingInterval = setInterval(() => {
+    elapsed += 500;
+    const pct = Math.min((elapsed / totalEstimate) * 92, 92);
+    loadingBar.style.width = pct + '%';
+
+    let cumulative = 0;
+    for (let i = 0; i < stepDurations.length; i++) {
+      cumulative += stepDurations[i];
+      if (elapsed >= cumulative && i > currentStep) {
+        advanceStep(i);
+      }
+    }
+  }, 500);
+}
+
+function advanceStep(to) {
+  for (let i = 0; i <= to && i < loadingSteps.length; i++) {
+    if (i < to) {
+      loadingSteps[i].classList.remove('active');
+      loadingSteps[i].classList.add('done');
+    } else if (i === to) {
+      loadingSteps[i].classList.remove('done');
+      loadingSteps[i].classList.add('active');
+    }
+  }
+  currentStep = to;
+}
+
+function completeLoading() {
+  if (loadingInterval) clearInterval(loadingInterval);
+  loadingSteps.forEach(s => { s.classList.remove('active'); s.classList.add('done'); });
+  loadingBar.style.width = '100%';
+}
+
+// ===== RENDER RESULTS =====
+function renderGauge(score) {
+  const circumference = 2 * Math.PI * 96;
+  const offset = circumference - (score / 100) * circumference;
+  const color = scoreColor(score);
+
+  gaugeFill.style.stroke = color;
+  gaugeScore.style.color = color;
+
+  // Animate
+  setTimeout(() => {
+    gaugeFill.style.strokeDashoffset = offset;
+  }, 100);
+
+  // Animate number
+  let current = 0;
+  const step = Math.ceil(score / 60);
+  const numInterval = setInterval(() => {
+    current += step;
+    if (current >= score) { current = score; clearInterval(numInterval); }
+    gaugeScore.textContent = current;
+  }, 25);
+}
+
+function renderGradeCards(data) {
+  const categories = [
+    { key: 'performance', label: 'Performance' },
+    { key: 'seo', label: 'SEO' },
+    { key: 'accessibility', label: 'Acessibilidade' },
+    { key: 'security', label: 'Seguranca' }
+  ];
+
+  gradeCards.innerHTML = categories.map(cat => {
+    const score = data[cat.key] != null ? data[cat.key] : 0;
+    const letter = scoreLetter(score);
+    const color = scoreColor(score);
+    return `<div class="grade-card" role="listitem">
+      <div class="grade-letter" style="color:${color}">${letter}</div>
+      <div class="grade-score">${score}/100</div>
+      <div class="grade-label">${cat.label}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderProblems(problems) {
+  if (!problems || problems.length === 0) {
+    problemsCount.textContent = '0';
+    problemList.innerHTML = '<p style="color:var(--text-muted);font-size:0.9rem">Nenhum problema critico encontrado.</p>';
+    return;
+  }
+
+  problemsCount.textContent = problems.length;
+  problemList.innerHTML = problems.map(p => {
+    const severity = p.severity || 'info';
+    const dotClass = severity === 'critical' ? 'critical' : severity === 'warning' ? 'warning' : 'info';
+    return `<div class="problem-item" role="listitem">
+      <div class="problem-dot ${dotClass}" aria-label="Severidade: ${severity}"></div>
+      <div class="problem-text">
+        <strong>${escapeHtml(p.title || '')}</strong>
+        <span>${escapeHtml(p.description || '')}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderAiAnalysis(html) {
+  if (!html) {
+    aiBody.innerHTML = '<p>Analise nao disponivel.</p>';
+    return;
+  }
+  aiBody.innerHTML = html;
+}
+
+function escapeHtml(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// ===== MAIN AUDIT FLOW =====
+async function runAudit() {
+  hideError();
+  const raw = urlInput.value;
+  const url = normalizeUrl(raw);
+
+  if (!url) {
+    showError('Por favor, insira uma URL valida. Exemplo: www.seusite.com.br');
+    return;
+  }
+
+  // Show loading
+  btnAnalyze.disabled = true;
+  resultsSection.classList.remove('active');
+  heroSection.style.display = 'none';
+  loadingSection.classList.add('active');
+  loadingUrlDisplay.textContent = url;
+  startLoadingAnimation();
+
+  try {
+    const response = await fetch(BACKEND_URL + '/api/audit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url })
+    });
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.message || 'Erro ao analisar o site. Tente novamente.');
+    }
+
+    const data = await response.json();
+
+    // Complete loading animation
+    completeLoading();
+
+    // Small delay for UX
+    await new Promise(r => setTimeout(r, 800));
+
+    // Hide loading, show results
+    loadingSection.classList.remove('active');
+    resultsSection.classList.add('active');
+    resultUrl.textContent = url;
+
+    // Render
+    const overallScore = data.score != null ? data.score : 0;
+    renderGauge(overallScore);
+    renderGradeCards(data.grades || {});
+    renderProblems(data.problems || []);
+    renderAiAnalysis(data.aiAnalysis || '');
+
+    // Scroll to results
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
+
+    // GTM event
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'seo_audit_completed', audit_url: url, audit_score: overallScore });
+
+  } catch (err) {
+    completeLoading();
+    loadingSection.classList.remove('active');
+    heroSection.style.display = '';
+    showError(err.message || 'Ocorreu um erro inesperado. Tente novamente em alguns instantes.');
+  } finally {
+    btnAnalyze.disabled = false;
+  }
+}
+
+// ===== EVENT LISTENERS =====
+btnAnalyze.addEventListener('click', runAudit);
+urlInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') runAudit();
+});
+
+// Close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
