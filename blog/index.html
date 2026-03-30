@@ -10,13 +10,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog SEO Express | Dicas de SEO e Marketing Digital para Empresas</title>
-    <meta name="description" content="Blog sobre SEO e marketing digital para empresas brasileiras. Aprenda a aparecer no Google, otimizar seu site e atrair mais clientes. Artigos práticos e atualizados.">
+    <meta name="description" content="Blog sobre SEO e marketing digital para empresas brasileiras. Aprenda a aparecer no Google, otimizar seu site e atrair mais clientes. Artigos praticos e atualizados.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://seoexpress.com.br/blog/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://seoexpress.com.br/blog/">
     <meta property="og:title" content="Blog SEO Express | SEO e Marketing Digital">
-    <meta property="og:description" content="Aprenda SEO e marketing digital com artigos práticos para empresas brasileiras.">
+    <meta property="og:description" content="Aprenda SEO e marketing digital com artigos praticos para empresas brasileiras.">
     <meta property="og:locale" content="pt_BR">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <style>
@@ -28,43 +28,101 @@
         .nav-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
         .logo{font-size:1.2rem;font-weight:700}
         .logo span{color:#00c853}
-        .nav-links{display:flex;gap:2rem;align-items:center}
+        .nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
         .nav-links a{font-size:0.9rem;color:#a0a0a0;transition:color 0.2s}
         .nav-links a:hover{color:#00c853}
-        .nav-cta{background:linear-gradient(135deg,#00c853,#009624);color:#000!important;padding:0.5rem 1.25rem;border-radius:8px;font-weight:700;font-size:0.85rem}
+        .nav-cta{background:linear-gradient(135deg,#00c853,#009624);color:#000!important;padding:0.5rem 1.25rem;border-radius:8px;font-weight:700;font-size:0.85rem;border:none;cursor:pointer}
 
-        .hero-blog{padding:8rem 2rem 4rem;text-align:center;max-width:800px;margin:0 auto}
-        .hero-blog h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:1rem;letter-spacing:-1px}
+        /* Hero */
+        .hero-blog{padding:8rem 2rem 3rem;text-align:center;max-width:800px;margin:0 auto}
+        .hero-blog h1{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:800;margin-bottom:1rem;letter-spacing:-1px}
         .hero-blog h1 span{color:#00c853}
-        .hero-blog p{color:#a0a0a0;font-size:1.1rem;line-height:1.7}
+        .hero-blog p{color:#a0a0a0;font-size:1.1rem;line-height:1.7;margin-bottom:2rem}
+        .hero-search{max-width:500px;margin:0 auto;position:relative}
+        .hero-search input{width:100%;background:#111;border:1px solid rgba(255,255,255,0.1);color:#e5e5e5;padding:0.875rem 1.25rem 0.875rem 3rem;border-radius:12px;font-size:0.95rem;outline:none;transition:border-color 0.2s;font-family:inherit}
+        .hero-search input:focus{border-color:#00c853}
+        .hero-search svg{position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#555}
 
-        .articles{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
-        .article-card{background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:2rem;margin-bottom:1.5rem;transition:all 0.3s}
-        .article-card:hover{border-color:rgba(0,200,83,0.3);transform:translateY(-3px)}
-        .article-meta{display:flex;gap:1rem;align-items:center;margin-bottom:0.75rem;font-size:0.8rem;color:#666}
-        .article-tag{background:rgba(0,200,83,0.1);color:#00c853;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.7rem;font-weight:600;text-transform:uppercase}
-        .article-card h2{font-size:1.35rem;font-weight:700;margin-bottom:0.5rem;line-height:1.3}
-        .article-card h2 a:hover{color:#00c853}
-        .article-card p{color:#a0a0a0;font-size:0.95rem;line-height:1.6;margin-bottom:1rem}
-        .read-more{color:#00c853;font-weight:600;font-size:0.9rem;display:inline-flex;align-items:center;gap:6px;transition:gap 0.2s}
+        /* Featured Post */
+        .featured{max-width:1100px;margin:0 auto;padding:0 2rem 3rem}
+        .featured-card{display:grid;grid-template-columns:1.2fr 1fr;gap:0;background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;transition:all 0.3s}
+        .featured-card:hover{border-color:rgba(0,200,83,0.3);transform:translateY(-3px)}
+        .featured-img{background:linear-gradient(135deg,#001a0a,#003300);display:flex;align-items:center;justify-content:center;padding:3rem;min-height:300px;position:relative;overflow:hidden}
+        .featured-img::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(0,200,83,0.15),transparent 70%)}
+        .featured-icon{font-size:6rem;opacity:0.3;position:relative;z-index:1}
+        .featured-badge{position:absolute;top:1.5rem;left:1.5rem;background:rgba(0,200,83,0.2);color:#00c853;padding:0.3rem 0.8rem;border-radius:6px;font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;z-index:1}
+        .featured-body{padding:2.5rem}
+        .featured-meta{display:flex;gap:1rem;align-items:center;margin-bottom:1rem;font-size:0.8rem;color:#666}
+        .featured-body h2{font-size:1.6rem;font-weight:700;margin-bottom:0.75rem;line-height:1.3}
+        .featured-body h2 a:hover{color:#00c853}
+        .featured-body p{color:#a0a0a0;font-size:0.95rem;line-height:1.7;margin-bottom:1.5rem}
+
+        /* Grid */
+        .articles-grid{max-width:1100px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+        .grid-label{max-width:1100px;margin:0 auto;padding:0 2rem 1.5rem}
+        .grid-label h3{font-size:1.1rem;font-weight:700;color:#fff}
+        .grid-label span{color:#00c853}
+
+        .article-card{background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:16px;overflow:hidden;transition:all 0.3s}
+        .article-card:hover{border-color:rgba(0,200,83,0.3);transform:translateY(-5px)}
+        .card-img{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+        .card-img::before{content:'';position:absolute;inset:0}
+        .card-img-icon{font-size:3.5rem;opacity:0.25;position:relative;z-index:1}
+        .card-tag{position:absolute;top:0.75rem;left:0.75rem;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);color:#00c853;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;z-index:1}
+        .card-body{padding:1.5rem}
+        .card-meta{font-size:0.75rem;color:#555;margin-bottom:0.5rem}
+        .card-body h2{font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;line-height:1.35}
+        .card-body h2 a:hover{color:#00c853}
+        .card-body p{color:#888;font-size:0.85rem;line-height:1.6;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .read-more{color:#00c853;font-weight:600;font-size:0.85rem;display:inline-flex;align-items:center;gap:6px;transition:gap 0.2s}
         .read-more:hover{gap:10px}
 
-        .cta-box{background:linear-gradient(135deg,rgba(0,200,83,0.1),rgba(0,150,36,0.1));border:1px solid rgba(0,200,83,0.2);border-radius:16px;padding:2.5rem;text-align:center;margin:3rem auto;max-width:700px}
-        .cta-box h3{font-size:1.3rem;font-weight:700;margin-bottom:0.5rem}
-        .cta-box p{color:#a0a0a0;margin-bottom:1.5rem}
-        .cta-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#00c853,#009624);color:#000;padding:0.875rem 2rem;border-radius:10px;font-weight:700;font-size:1rem;transition:transform 0.2s}
+        /* Color themes for card backgrounds */
+        .bg-red{background:linear-gradient(135deg,#1a0505,#2d0a0a)}
+        .bg-blue{background:linear-gradient(135deg,#050a1a,#0a142d)}
+        .bg-green{background:linear-gradient(135deg,#001a0a,#003300)}
+        .bg-purple{background:linear-gradient(135deg,#0f051a,#1a0a2d)}
+        .bg-orange{background:linear-gradient(135deg,#1a0f05,#2d1a0a)}
+        .bg-cyan{background:linear-gradient(135deg,#051a1a,#0a2d2d)}
+
+        /* CTA */
+        .cta-box{max-width:1100px;margin:0 auto 4rem;padding:0 2rem}
+        .cta-inner{background:linear-gradient(135deg,rgba(0,200,83,0.08),rgba(0,150,36,0.05));border:1px solid rgba(0,200,83,0.15);border-radius:20px;padding:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+        .cta-text h3{font-size:1.4rem;font-weight:700;margin-bottom:0.5rem}
+        .cta-text p{color:#a0a0a0;font-size:0.95rem}
+        .cta-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#00c853,#009624);color:#000;padding:1rem 2rem;border-radius:12px;font-weight:700;font-size:1rem;transition:transform 0.2s;white-space:nowrap}
         .cta-btn:hover{transform:translateY(-2px)}
 
-        footer{padding:2rem;border-top:1px solid rgba(255,255,255,0.08);text-align:center;color:#666;font-size:0.8rem}
-        footer a{color:#00c853}
+        /* Footer */
+        footer{padding:2.5rem 2rem;border-top:1px solid rgba(255,255,255,0.08)}
+        .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+        .footer-logo{font-weight:600;color:#888}
+        .footer-logo span{color:#00c853}
+        .footer-links{display:flex;gap:1.5rem}
+        .footer-links a{color:#666;font-size:0.85rem;transition:color 0.2s}
+        .footer-links a:hover{color:#00c853}
+        .footer-copy{color:#444;font-size:0.8rem}
 
+        /* Mobile */
+        @media(max-width:900px){
+            .featured-card{grid-template-columns:1fr}
+            .featured-img{min-height:200px}
+            .articles-grid{grid-template-columns:1fr 1fr}
+        }
         @media(max-width:768px){
             .nav-links{display:none}
-            .hero-blog{padding:6rem 1rem 3rem}
-            .articles{padding:0 1rem 3rem}
-            .article-card{padding:1.5rem}
-            .article-card h2{font-size:1.15rem}
+            .hero-blog{padding:6rem 1rem 2rem}
+            .featured{padding:0 1rem 2rem}
+            .featured-body{padding:1.5rem}
+            .featured-body h2{font-size:1.3rem}
+            .articles-grid{grid-template-columns:1fr;padding:0 1rem 3rem}
+            .grid-label{padding:0 1rem 1rem}
+            .cta-inner{flex-direction:column;text-align:center;padding:2rem}
+            .footer-inner{flex-direction:column;text-align:center}
         }
+
+        /* Search filter */
+        .article-card.hidden{display:none}
     </style>
 </head>
 <body>
@@ -74,96 +132,168 @@
     <nav>
         <div class="nav-inner">
             <a href="/" class="logo">SEO <span>Express</span></a>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/blog/" style="color:#00c853">Blog</a>
-                <a href="/#planos">Planos</a>
-                <a href="/" class="nav-cta">Analisar gratis</a>
-            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog/" style="color:#00c853">Blog</a></li>
+                <li><a href="/#planos">Planos</a></li>
+                <li><a href="https://wa.me/5511996591308?text=Vi o blog do SEO Express." target="_blank">Contato</a></li>
+                <li><a href="/" class="nav-cta" style="text-decoration:none">Analisar gratis</a></li>
+            </ul>
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero-blog">
         <h1>Blog <span>SEO Express</span></h1>
-        <p>Artigos praticos sobre SEO e marketing digital para empresas brasileiras. Sem enrolacao, direto ao ponto.</p>
+        <p>Artigos praticos sobre SEO e marketing digital. Sem enrolacao. Se nosso conteudo esta no Google, e porque funciona.</p>
+        <div class="hero-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="searchInput" placeholder="Buscar artigos..." oninput="filterArticles(this.value)">
+        </div>
     </section>
 
-    <section class="articles">
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">SEO</span>
-                <span>30 Mar 2026</span>
-                <span>8 min de leitura</span>
+    <!-- Featured Article -->
+    <section class="featured">
+        <a href="/blog/por-que-seu-site-nao-aparece-no-google/" class="featured-card">
+            <div class="featured-img">
+                <div class="featured-badge">Destaque</div>
+                <div class="featured-icon">&#128270;</div>
             </div>
-            <h2><a href="/blog/por-que-seu-site-nao-aparece-no-google/">Por Que Seu Site Nao Aparece no Google: 7 Motivos e Como Resolver</a></h2>
-            <p>Descubra os 7 motivos mais comuns que impedem seu site de aparecer nos resultados do Google e aprenda a resolver cada um com um checklist pratico.</p>
-            <a href="/blog/por-que-seu-site-nao-aparece-no-google/" class="read-more">Ler artigo &#8594;</a>
-        </article>
-
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">Precos</span>
-                <span>30 Mar 2026</span>
-                <span>7 min de leitura</span>
+            <div class="featured-body">
+                <div class="featured-meta">
+                    <span>SEO</span>
+                    <span>&#8226;</span>
+                    <span>30 Mar 2026</span>
+                    <span>&#8226;</span>
+                    <span>8 min de leitura</span>
+                </div>
+                <h2><span>Por Que Seu Site Nao Aparece no Google:</span> 7 Motivos e Como Resolver</h2>
+                <p>Descubra os 7 motivos mais comuns que impedem seu site de aparecer nos resultados do Google e aprenda a resolver cada um com um checklist pratico. O guia definitivo para 2026.</p>
+                <span class="read-more">Ler artigo completo &#8594;</span>
             </div>
-            <h2><a href="/blog/quanto-custa-seo-2026/">Quanto Custa SEO em 2026? Precos Reais de Agencias e Freelancers</a></h2>
-            <p>Comparativo completo de precos de SEO no Brasil. Agencias, freelancers, ferramentas e DIY. Tabela com valores reais do mercado.</p>
-            <a href="/blog/quanto-custa-seo-2026/" class="read-more">Ler artigo &#8594;</a>
-        </article>
-
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">Guia</span>
-                <span>30 Mar 2026</span>
-                <span>9 min de leitura</span>
-            </div>
-            <h2><a href="/blog/seo-para-pequenas-empresas/">SEO para Pequenas Empresas: Guia Completo para Aparecer no Google</a></h2>
-            <p>Guia passo a passo para pequenas empresas que querem aparecer no Google sem gastar milhares por mes. Ferramentas gratuitas e tecnicas praticas.</p>
-            <a href="/blog/seo-para-pequenas-empresas/" class="read-more">Ler artigo &#8594;</a>
-        </article>
-
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">Tutorial</span>
-                <span>30 Mar 2026</span>
-                <span>8 min de leitura</span>
-            </div>
-            <h2><a href="/blog/como-aparecer-primeira-pagina-google/">Como Aparecer na Primeira Pagina do Google: 10 Passos Praticos</a></h2>
-            <p>10 passos actionaveis para colocar seu site na primeira pagina do Google. Tecnicas testadas que funcionam para negocios brasileiros em 2026.</p>
-            <a href="/blog/como-aparecer-primeira-pagina-google/" class="read-more">Ler artigo &#8594;</a>
-        </article>
-
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">Erros</span>
-                <span>30 Mar 2026</span>
-                <span>7 min de leitura</span>
-            </div>
-            <h2><a href="/blog/erros-seo-que-matam-seu-site/">10 Erros de SEO Que Matam Seu Site (e Voce Nem Sabe)</a></h2>
-            <p>Descubra os 10 erros de SEO mais comuns que estao destruindo o posicionamento do seu site sem voce perceber. Com checklist para corrigir agora.</p>
-            <a href="/blog/erros-seo-que-matam-seu-site/" class="read-more">Ler artigo &#8594;</a>
-        </article>
-
-        <article class="article-card">
-            <div class="article-meta">
-                <span class="article-tag">Local</span>
-                <span>30 Mar 2026</span>
-                <span>8 min de leitura</span>
-            </div>
-            <h2><a href="/blog/seo-local-google-meu-negocio/">SEO Local: Como Dominar o Google Meu Negocio em 2026</a></h2>
-            <p>Guia completo de SEO Local e Google Meu Negocio. Aprenda a aparecer no mapa do Google e atrair clientes da sua regiao.</p>
-            <a href="/blog/seo-local-google-meu-negocio/" class="read-more">Ler artigo &#8594;</a>
-        </article>
+        </a>
     </section>
 
-    <div class="cta-box">
-        <h3>Descubra o score SEO do seu site</h3>
-        <p>Cole a URL e receba um relatorio completo em 60 segundos. Gratis.</p>
-        <a href="/" class="cta-btn">Analisar meu site gratis &#8594;</a>
+    <!-- Articles Grid -->
+    <div class="grid-label">
+        <h3>Todos os <span>artigos</span></h3>
     </div>
 
+    <section class="articles-grid" id="articlesGrid">
+        <article class="article-card" data-title="quanto custa seo 2026 precos agencias freelancers">
+            <a href="/blog/quanto-custa-seo-2026/">
+                <div class="card-img bg-blue">
+                    <div class="card-tag">Precos</div>
+                    <div class="card-img-icon">&#128176;</div>
+                </div>
+            </a>
+            <div class="card-body">
+                <div class="card-meta">30 Mar 2026 &#8226; 7 min</div>
+                <h2><a href="/blog/quanto-custa-seo-2026/">Quanto Custa SEO em 2026? Precos Reais de Agencias e Freelancers</a></h2>
+                <p>Comparativo completo de precos de SEO no Brasil. Agencias, freelancers, ferramentas e DIY. Tabela com valores reais do mercado.</p>
+                <a href="/blog/quanto-custa-seo-2026/" class="read-more">Ler artigo &#8594;</a>
+            </div>
+        </article>
+
+        <article class="article-card" data-title="seo para pequenas empresas guia completo aparecer google">
+            <a href="/blog/seo-para-pequenas-empresas/">
+                <div class="card-img bg-green">
+                    <div class="card-tag">Guia</div>
+                    <div class="card-img-icon">&#127970;</div>
+                </div>
+            </a>
+            <div class="card-body">
+                <div class="card-meta">30 Mar 2026 &#8226; 9 min</div>
+                <h2><a href="/blog/seo-para-pequenas-empresas/">SEO para Pequenas Empresas: Guia Completo para Aparecer no Google</a></h2>
+                <p>Passo a passo para pequenas empresas que querem aparecer no Google sem gastar milhares. Ferramentas gratuitas e tecnicas praticas.</p>
+                <a href="/blog/seo-para-pequenas-empresas/" class="read-more">Ler artigo &#8594;</a>
+            </div>
+        </article>
+
+        <article class="article-card" data-title="como aparecer primeira pagina google 10 passos praticos">
+            <a href="/blog/como-aparecer-primeira-pagina-google/">
+                <div class="card-img bg-purple">
+                    <div class="card-tag">Tutorial</div>
+                    <div class="card-img-icon">&#127942;</div>
+                </div>
+            </a>
+            <div class="card-body">
+                <div class="card-meta">30 Mar 2026 &#8226; 8 min</div>
+                <h2><a href="/blog/como-aparecer-primeira-pagina-google/">Como Aparecer na Primeira Pagina do Google: 10 Passos</a></h2>
+                <p>10 passos praticos para colocar seu site na primeira pagina do Google. Tecnicas testadas para negocios brasileiros em 2026.</p>
+                <a href="/blog/como-aparecer-primeira-pagina-google/" class="read-more">Ler artigo &#8594;</a>
+            </div>
+        </article>
+
+        <article class="article-card" data-title="erros seo que matam seu site problemas corrigir">
+            <a href="/blog/erros-seo-que-matam-seu-site/">
+                <div class="card-img bg-red">
+                    <div class="card-tag">Erros</div>
+                    <div class="card-img-icon">&#9888;</div>
+                </div>
+            </a>
+            <div class="card-body">
+                <div class="card-meta">30 Mar 2026 &#8226; 7 min</div>
+                <h2><a href="/blog/erros-seo-que-matam-seu-site/">10 Erros de SEO Que Matam Seu Site (e Voce Nem Sabe)</a></h2>
+                <p>Os 10 erros mais comuns que destroem o posicionamento do seu site sem voce perceber. Checklist para corrigir agora.</p>
+                <a href="/blog/erros-seo-que-matam-seu-site/" class="read-more">Ler artigo &#8594;</a>
+            </div>
+        </article>
+
+        <article class="article-card" data-title="seo local google meu negocio mapa regiao cidade">
+            <a href="/blog/seo-local-google-meu-negocio/">
+                <div class="card-img bg-orange">
+                    <div class="card-tag">Local</div>
+                    <div class="card-img-icon">&#128205;</div>
+                </div>
+            </a>
+            <div class="card-body">
+                <div class="card-meta">30 Mar 2026 &#8226; 8 min</div>
+                <h2><a href="/blog/seo-local-google-meu-negocio/">SEO Local: Como Dominar o Google Meu Negocio em 2026</a></h2>
+                <p>Guia completo de SEO Local e Google Meu Negocio. Apareca no mapa do Google e atraia clientes da sua regiao.</p>
+                <a href="/blog/seo-local-google-meu-negocio/" class="read-more">Ler artigo &#8594;</a>
+            </div>
+        </article>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-box">
+        <div class="cta-inner">
+            <div class="cta-text">
+                <h3>Descubra o score SEO do seu site</h3>
+                <p>Cole a URL e receba um relatorio completo em 60 segundos. Gratis, sem cadastro.</p>
+            </div>
+            <a href="/" class="cta-btn">Analisar meu site &#8594;</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>SEO Express by <a href="https://sakaguchi.ia.br" target="_blank">Sakaguchi IA</a> &copy; 2026</p>
+        <div class="footer-inner">
+            <div class="footer-logo">SEO <span>Express</span> by Sakaguchi IA</div>
+            <div class="footer-links">
+                <a href="/">Analisar site</a>
+                <a href="/blog/">Blog</a>
+                <a href="https://sakaguchi.ia.br" target="_blank">Sakaguchi IA</a>
+                <a href="https://wa.me/5511996591308" target="_blank">WhatsApp</a>
+            </div>
+            <div class="footer-copy">&copy; 2026 Sakaguchi IA</div>
+        </div>
     </footer>
+
+    <script>
+    function filterArticles(query) {
+        var cards = document.querySelectorAll('.article-card');
+        var q = query.toLowerCase().trim();
+        cards.forEach(function(card) {
+            var title = (card.getAttribute('data-title') || '') + ' ' + card.textContent.toLowerCase();
+            if (!q || title.includes(q)) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+    </script>
 </body>
 </html>
