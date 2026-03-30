@@ -739,7 +739,8 @@ function renderGradeCards(data) {
   ];
 
   gradeCards.innerHTML = categories.map(cat => {
-    const score = data[cat.key] != null ? data[cat.key] : 0;
+    const raw = data[cat.key];
+    const score = (raw != null && typeof raw === 'object') ? (raw.score || 0) : (raw != null ? raw : 0);
     const letter = scoreLetter(score);
     const color = scoreColor(score);
     return `<div class="grade-card" role="listitem">
@@ -829,12 +830,51 @@ async function runAudit() {
     resultsSection.classList.add('active');
     resultUrl.textContent = url;
 
-    // Render
-    const overallScore = data.score != null ? data.score : 0;
+    // Extract report from response (backend wraps in { success, report })
+    const report = data.report || data;
+    const overallScore = report.score != null ? report.score : 0;
     renderGauge(overallScore);
-    renderGradeCards(data.grades || {});
-    renderProblems(data.problems || []);
-    renderAiAnalysis(data.aiAnalysis || '');
+    renderGradeCards(report.grades || {});
+
+    // Build problems from crawler issues + AI critical issues
+    const problems = [];
+    if (report.details) {
+      const d = report.details;
+      if (d.meta && !d.meta.title?.text) problems.push({ title: 'Title ausente', description: 'A tag <title> está vazia ou ausente. Isso prejudica gravemente o SEO.', severity: 'critical' });
+      if (d.meta && !d.meta.description?.text) problems.push({ title: 'Meta Description ausente', description: 'A meta description está vazia. O Google não sabe o que mostrar nos resultados.', severity: 'critical' });
+      if (d.headings && d.headings.h1Count === 0) problems.push({ title: 'H1 ausente', description: 'Nenhuma tag H1 encontrada. Todo site precisa de um H1 principal.', severity: 'critical' });
+      if (d.technical && !d.technical.https) problems.push({ title: 'HTTPS ausente', description: 'O site não usa HTTPS. Google penaliza sites sem certificado SSL.', severity: 'critical' });
+      if (d.technical && !d.technical.sitemap) problems.push({ title: 'Sitemap ausente', description: 'Nenhum sitemap.xml encontrado. Isso dificulta a indexação pelo Google.', severity: 'warning' });
+      if (d.technical && !d.technical.schema?.present) problems.push({ title: 'Schema.org ausente', description: 'Nenhum dado estruturado encontrado. Schema.org melhora os rich snippets.', severity: 'warning' });
+      if (d.images && d.images.withoutAlt > 0) problems.push({ title: d.images.withoutAlt + ' imagens sem alt text', description: 'Imagens sem texto alternativo prejudicam acessibilidade e SEO.', severity: 'warning' });
+      if (d.technical && d.technical.pageSize > 200) problems.push({ title: 'Página muito pesada (' + d.technical.pageSize.toFixed(0) + 'KB)', description: 'Páginas acima de 200KB demoram para carregar em mobile.', severity: 'warning' });
+      if (d.performance && d.performance.lcp !== 'N/A') {
+        const lcpVal = parseFloat(d.performance.lcp);
+        if (lcpVal > 2.5) problems.push({ title: 'LCP lento (' + d.performance.lcp + ')', description: 'O conteúdo principal demora mais de 2.5s para aparecer. Isso afeta ranking e experiência.', severity: 'critical' });
+      }
+    }
+    // Add AI critical issues
+    if (report.ai_analysis && report.ai_analysis.critical_issues) {
+      report.ai_analysis.critical_issues.forEach(function(issue) {
+        if (issue && issue !== 'Nenhum problema critico detectado') {
+          problems.push({ title: issue, description: '', severity: 'warning' });
+        }
+      });
+    }
+    renderProblems(problems);
+
+    // Build AI analysis HTML
+    const ai = report.ai_analysis || {};
+    let aiHtml = '<p>' + (ai.summary || '') + '</p>';
+    if (ai.recommendations && ai.recommendations.length > 0) {
+      aiHtml += '<h4 style="margin-top:1rem;color:#00c853;">Recomendações:</h4><ul>';
+      ai.recommendations.forEach(function(rec) { aiHtml += '<li>' + rec + '</li>'; });
+      aiHtml += '</ul>';
+    }
+    if (ai.estimated_impact) {
+      aiHtml += '<p style="margin-top:1rem;"><strong>Impacto estimado:</strong> ' + ai.estimated_impact + '</p>';
+    }
+    renderAiAnalysis(aiHtml);
 
     // Scroll to results
     resultsSection.scrollIntoView({ behavior: 'smooth' });
