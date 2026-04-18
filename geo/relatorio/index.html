@@ -93,6 +93,44 @@ h1{font-size:1.8rem;margin-bottom:8px}
       <p id="impactText">—</p>
     </div>
 
+    <div class="section" id="directAnswerSection" style="display:none">
+      <h2>Parágrafo pronto pra colar no topo do site</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-bottom:10px">Essa é a parte que as IAs copiam pra resposta. Cola no primeiro parágrafo da página.</p>
+      <div id="directAnswerBox" style="background:rgba(0,200,83,0.06);border-left:3px solid var(--accent);padding:16px;border-radius:6px;font-size:1.02rem;color:#fff;line-height:1.6"></div>
+      <button class="btn btn-sec" style="margin-top:12px" onclick="copyEl('directAnswerBox', this)">Copiar</button>
+    </div>
+
+    <div class="section" id="faqSchemaSection" style="display:none">
+      <h2>Código FAQPage pra colar no &lt;head&gt;</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-bottom:10px">Plugin de schema ou dev adiciona. Esse código faz o ChatGPT entender suas FAQ como oficiais.</p>
+      <pre id="faqSchema" style="background:#000;color:#8eff8e;padding:14px;border-radius:8px;font-family:Menlo,Consolas,monospace;font-size:0.78rem;overflow-x:auto;white-space:pre-wrap;word-break:break-all;line-height:1.4"></pre>
+      <button class="btn btn-sec" style="margin-top:8px" onclick="copyEl('faqSchema', this)">Copiar código</button>
+    </div>
+
+    <div class="section" id="articleSchemaSection" style="display:none">
+      <h2>Código Article schema</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-bottom:10px">Cola junto com o FAQPage. Avisa pras IAs que essa página tem autor, data e título.</p>
+      <pre id="articleSchema" style="background:#000;color:#8eff8e;padding:14px;border-radius:8px;font-family:Menlo,Consolas,monospace;font-size:0.78rem;overflow-x:auto;white-space:pre-wrap;word-break:break-all;line-height:1.4"></pre>
+      <button class="btn btn-sec" style="margin-top:8px" onclick="copyEl('articleSchema', this)">Copiar código</button>
+    </div>
+
+    <div class="section" id="competitorsSection" style="display:none">
+      <h2>Quem aparece no seu lugar</h2>
+      <p id="competitorsNote" style="color:#ddd;margin-bottom:12px"></p>
+      <div id="competitorsList"></div>
+    </div>
+
+    <div class="section" id="indexationSection" style="display:none">
+      <h2>Como avisar o Bing e o Google</h2>
+      <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px">Depois de aplicar, precisa avisar os buscadores. ChatGPT usa o Bing, então Bing é prioridade.</p>
+      <ol id="indexationList" style="margin-left:20px"></ol>
+    </div>
+
+    <div class="section" id="timelineSection" style="display:none">
+      <h2>Cronograma nas próximas 3 semanas</h2>
+      <div id="timelineBox"></div>
+    </div>
+
     <div class="section" id="trackerSection">
       <h2>Como as IAs enxergam sua página hoje</h2>
       <div id="trackerList"></div>
@@ -178,6 +216,48 @@ async function render(order, report) {
     const ol = document.getElementById('actionsList');
     ol.innerHTML = (aiAnalysis.top_3_actions || []).map(a => '<li>' + escapeHtml(a) + '</li>').join('');
     document.getElementById('impactText').textContent = aiAnalysis.estimated_impact || '';
+
+    // Kit de implementacao
+    if (aiAnalysis.direct_answer_paragraph) {
+      document.getElementById('directAnswerSection').style.display = 'block';
+      document.getElementById('directAnswerBox').textContent = aiAnalysis.direct_answer_paragraph;
+    }
+    if (aiAnalysis.faq_schema_jsonld) {
+      document.getElementById('faqSchemaSection').style.display = 'block';
+      document.getElementById('faqSchema').textContent = aiAnalysis.faq_schema_jsonld;
+    }
+    if (aiAnalysis.article_schema_jsonld) {
+      document.getElementById('articleSchemaSection').style.display = 'block';
+      document.getElementById('articleSchema').textContent = aiAnalysis.article_schema_jsonld;
+    }
+    if (aiAnalysis.competitors_note || (aiAnalysis.competitors || []).length) {
+      document.getElementById('competitorsSection').style.display = 'block';
+      document.getElementById('competitorsNote').textContent = aiAnalysis.competitors_note || '';
+      const clist = document.getElementById('competitorsList');
+      clist.innerHTML = (aiAnalysis.competitors || []).map(c =>
+        '<div style="padding:8px 0;border-bottom:1px solid var(--border)"><a href="' + c.url + '" target="_blank" rel="noopener" style="color:#8a9dff;text-decoration:none">' + escapeHtml(c.domain) + ' →</a></div>'
+      ).join('');
+    }
+    if (Array.isArray(aiAnalysis.indexation_checklist) && aiAnalysis.indexation_checklist.length) {
+      document.getElementById('indexationSection').style.display = 'block';
+      const ilist = document.getElementById('indexationList');
+      ilist.innerHTML = aiAnalysis.indexation_checklist.map(it => {
+        const linkHtml = it.url ? '<br><a href="' + it.url + '" target="_blank" rel="noopener" style="color:#8a9dff;font-size:0.85rem">' + escapeHtml(it.url) + ' →</a>' : '';
+        return '<li style="margin-bottom:14px;color:#ddd">' + escapeHtml(it.step) + linkHtml + '</li>';
+      }).join('');
+    }
+    if (aiAnalysis.timeline) {
+      document.getElementById('timelineSection').style.display = 'block';
+      const tlBox = document.getElementById('timelineBox');
+      const tl = aiAnalysis.timeline;
+      tlBox.innerHTML = [
+        ['Semana 1 — Aplicar', tl.semana_1],
+        ['Semana 2 — Primeiras aparições', tl.semana_2],
+        ['Semana 3 — Validar ganho', tl.semana_3],
+      ].map(([label, txt]) =>
+        '<div style="padding:14px 0;border-top:1px solid var(--border)"><strong style="color:var(--accent);display:block;margin-bottom:4px">' + label + '</strong><p style="color:#ddd;margin:0">' + escapeHtml(txt || '—') + '</p></div>'
+      ).join('');
+    }
   } else {
     document.getElementById('summarySection').style.display = 'none';
     document.getElementById('impactSection').style.display = 'none';
@@ -202,6 +282,16 @@ async function render(order, report) {
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function copyEl(id, btn) {
+  const el = document.getElementById(id);
+  const text = el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.textContent;
+    btn.textContent = 'Copiado!';
+    setTimeout(() => { btn.textContent = original; }, 1800);
+  });
 }
 </script>
 </body>
