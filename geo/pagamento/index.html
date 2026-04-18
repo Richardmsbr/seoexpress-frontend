@@ -44,12 +44,18 @@ code{font-family:Menlo,Consolas,monospace;background:#000;padding:2px 6px;border
   </div>
 
   <div class="status-box" id="statusBox">
-    <h3>Aguardando pagamento</h3>
-    <p>
-      Em breve voce vai ver aqui o QR Code PIX pra finalizar. Enquanto isso, seu pedido
-      ja foi registrado. Vamos te avisar por email assim que o pagamento for confirmado
-      e o relatorio ficar pronto.
+    <h3>Carregando PIX...</h3>
+    <p>Aguarde, estamos gerando seu QR Code.</p>
+  </div>
+  <div id="pixBox" style="display:none;text-align:center">
+    <h3 style="text-align:center;margin:20px 0 6px;color:#00c853">Pague com PIX</h3>
+    <p style="text-align:center;color:#a0a0a0;font-size:0.9rem;margin-bottom:16px">
+      Escaneia o QR ou copia o codigo abaixo. Confirmacao automatica em segundos.
     </p>
+    <img id="pixQr" alt="QR Code PIX" style="max-width:240px;margin:0 auto;display:block;background:#fff;padding:8px;border-radius:12px">
+    <div style="margin:16px 0 8px;font-size:0.75rem;color:#a0a0a0;text-transform:uppercase;letter-spacing:1px">PIX copia e cola</div>
+    <textarea id="pixCode" readonly style="width:100%;background:#0a0a0a;border:1px solid rgba(255,255,255,0.1);color:#fff;padding:10px;border-radius:8px;font-family:Menlo,Consolas,monospace;font-size:0.78rem;min-height:80px;resize:none"></textarea>
+    <button id="copyBtn" class="btn btn-sec" style="margin-top:6px">Copiar codigo PIX</button>
   </div>
 
   <a class="btn" href="/geo/conta/">Ir para minha conta</a>
@@ -87,6 +93,17 @@ async function loadOrder() {
   }
 }
 
+document.getElementById('copyBtn')?.addEventListener('click', () => {
+  const ta = document.getElementById('pixCode');
+  ta.select();
+  navigator.clipboard.writeText(ta.value).then(() => {
+    const btn = document.getElementById('copyBtn');
+    const original = btn.textContent;
+    btn.textContent = 'Copiado!';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  });
+});
+
 function render(data) {
   const o = data.order;
   const d = document.getElementById('orderDetail');
@@ -102,12 +119,24 @@ function render(data) {
   const status = o.status;
 
   if (status === 'pending_payment') {
-    box.className = 'status-box';
-    box.innerHTML = '<h3>Aguardando pagamento</h3><p>Em breve voce vai ver aqui o QR Code PIX. Enquanto nao, seu pedido ja foi registrado.</p>';
+    if (o.payment?.br_code) {
+      box.style.display = 'none';
+      const pixBox = document.getElementById('pixBox');
+      pixBox.style.display = 'block';
+      document.getElementById('pixQr').src = 'data:image/png;base64,' + o.payment.qr_code_base64;
+      document.getElementById('pixCode').value = o.payment.br_code;
+    } else {
+      box.className = 'status-box';
+      box.innerHTML = '<h3>Gerando PIX...</h3><p>Aguarde alguns instantes.</p>';
+    }
   } else if (status === 'paid' || status === 'processing') {
+    document.getElementById('pixBox').style.display = 'none';
+    box.style.display = 'block';
     box.className = 'status-box';
     box.innerHTML = '<h3><span class="spinner"></span>Processando</h3><p>Pagamento confirmado. Estamos rodando a analise GEO nas 3 LLMs agora. Isso leva de 2 a 5 minutos. Fique por aqui ou acompanhe por email.</p>';
   } else if (status === 'delivered') {
+    document.getElementById('pixBox').style.display = 'none';
+    box.style.display = 'block';
     box.className = 'status-box ready';
     box.innerHTML = `<h3>Relatorio pronto!</h3>
       <p>Score GEO: <strong>${data.report?.geo_score || '—'}/100</strong> (grade ${data.report?.geo_grade || '—'})</p>
