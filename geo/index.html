@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO Snapshot — Descubra se seu site e citado pelo ChatGPT | SEO Express</title>
+<meta name="description" content="Analise instantanea em 3 LLMs (ChatGPT search, Perplexity, Gemini). Descubra seu score GEO e receba recomendacoes especificas em 5 minutos. R$ 29.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://seoexpress.com.br/geo/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="GEO Snapshot — descubra se seu site e citado pelo ChatGPT">
+<meta property="og:description" content="Analise em 3 LLMs + score GEO + recomendacoes. R$ 29.">
+<meta property="og:url" content="https://seoexpress.com.br/geo/">
+<meta property="og:locale" content="pt_BR">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "SEO Express GEO Snapshot",
+  "description": "Analise instantanea de citabilidade em buscadores generativos",
+  "provider": { "@type": "Organization", "name": "Sakaguchi IA" },
+  "offers": {
+    "@type": "Offer",
+    "price": "29.00",
+    "priceCurrency": "BRL",
+    "url": "https://seoexpress.com.br/geo/"
+  }
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--accent:#00c853;--accent-light:#69f0ae;--text:#fff;
+  --muted:#a0a0a0;--card:#111;--border:rgba(255,255,255,0.1);
+  --danger:#ff1744;--warn:#ffd600;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-light)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:1.15rem;font-weight:700}
+.nav-logo .seo{color:var(--accent)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{color:var(--muted);font-size:0.9rem;font-weight:500}
+.nav-links a:hover{color:var(--text)}
+
+/* HERO */
+.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:120px 24px 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:120%;height:100%;background:radial-gradient(ellipse,rgba(0,200,83,0.12),transparent 60%);pointer-events:none}
+.badge{display:inline-block;background:rgba(0,200,83,0.12);color:var(--accent);padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:600;margin-bottom:20px;letter-spacing:0.5px;position:relative}
+h1{font-size:clamp(2rem,5vw,3.6rem);font-weight:800;line-height:1.15;max-width:900px;margin:0 auto 20px;position:relative}
+h1 .hl{background:linear-gradient(120deg,var(--accent),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{font-size:1.15rem;color:var(--muted);max-width:660px;margin:0 auto 36px;position:relative}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;position:relative}
+.btn-primary{background:var(--accent);color:#0a0a0a;font-weight:700;padding:14px 28px;border:none;border-radius:10px;font-size:1rem;cursor:pointer;transition:all .2s}
+.btn-primary:hover{background:var(--accent-light);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border);padding:14px 28px;border-radius:10px;font-size:1rem;cursor:pointer;transition:all .2s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+/* SECTION */
+section{padding:80px 24px}
+.wrap{max-width:1100px;margin:0 auto}
+h2{font-size:2rem;font-weight:700;margin-bottom:16px;text-align:center}
+.section-sub{color:var(--muted);font-size:1.05rem;text-align:center;max-width:600px;margin:0 auto 40px}
+
+/* HOW */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(0,200,83,0.12);color:var(--accent);border-radius:50%;font-weight:700;margin-bottom:12px}
+.step h3{font-size:1.1rem;margin-bottom:8px}
+.step p{color:var(--muted);font-size:0.95rem}
+
+/* PRICING */
+.pricing{max-width:500px;margin:0 auto;background:var(--card);border:2px solid var(--accent);border-radius:16px;padding:40px;text-align:center;position:relative}
+.pricing .price{font-size:3.5rem;font-weight:800;color:var(--accent);margin:16px 0}
+.pricing .price small{font-size:1rem;color:var(--muted);font-weight:400}
+.pricing ul{list-style:none;text-align:left;margin:24px 0}
+.pricing li{padding:10px 0;color:var(--text);display:flex;align-items:center;gap:10px}
+.pricing li::before{content:"✓";color:var(--accent);font-weight:700}
+
+/* FORM */
+#comprar{scroll-margin-top:80px}
+.form-card{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px}
+.form-card h3{font-size:1.4rem;margin-bottom:6px}
+.form-card p.help{color:var(--muted);font-size:0.9rem;margin-bottom:24px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:0.85rem;font-weight:600;color:var(--muted);margin-bottom:6px;letter-spacing:0.3px}
+.field input,.field textarea{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);padding:12px 14px;border-radius:8px;font-size:1rem;font-family:inherit}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+.field textarea{min-height:90px;resize:vertical}
+.field .hint{color:var(--muted);font-size:0.8rem;margin-top:4px}
+.form-card button{width:100%;margin-top:12px;padding:14px;background:var(--accent);color:#0a0a0a;border:none;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer;transition:all .2s}
+.form-card button:hover:not(:disabled){background:var(--accent-light)}
+.form-card button:disabled{opacity:0.5;cursor:not-allowed}
+.msg{margin-top:16px;padding:12px 16px;border-radius:8px;font-size:0.9rem}
+.msg.error{background:rgba(255,23,68,0.1);border:1px solid var(--danger);color:#ff8a80}
+.msg.success{background:rgba(0,200,83,0.1);border:1px solid var(--accent);color:var(--accent-light)}
+
+/* FAQ */
+.faq{max-width:720px;margin:0 auto}
+.faq details{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;padding:0}
+.faq summary{padding:18px 20px;font-weight:600;cursor:pointer;list-style:none}
+.faq summary::after{content:"+";float:right;color:var(--accent);font-size:1.2rem}
+.faq details[open] summary::after{content:"-"}
+.faq details[open] summary{border-bottom:1px solid var(--border)}
+.faq details p{padding:16px 20px;color:var(--muted);font-size:0.95rem}
+
+/* FOOTER */
+footer{text-align:center;padding:40px 24px;color:var(--muted);font-size:0.9rem;border-top:1px solid var(--border)}
+footer a{color:var(--muted)}
+
+@media(max-width:640px){
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><span class="seo">SEO</span>Express</a>
+    <ul class="nav-links">
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#preco">Preco</a></li>
+      <li><a href="/lab/">Laboratorio</a></li>
+      <li><a href="/geo/conta/">Minha conta</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="badge">NOVO · Disponivel a partir de hoje</span>
+  <h1>Descubra se o <span class="hl">ChatGPT cita seu site</span> — e o que ajustar pra ser citado</h1>
+  <p class="sub">
+    Analise instantanea da sua pagina em <strong>3 LLMs</strong> (ChatGPT search, Perplexity, Gemini)
+    com <strong>score GEO</strong>, lista de sinais e recomendacoes especificas. Resultado em 5 minutos.
+  </p>
+  <div class="cta-row">
+    <a href="#comprar"><button class="btn-primary">Quero meu Snapshot por R$ 29</button></a>
+    <a href="/lab/"><button class="btn-secondary">Ver o laboratorio aberto</button></a>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="wrap">
+    <h2>Como funciona</h2>
+    <p class="section-sub">Voce informa sua URL e ate 3 perguntas que clientes fariam pra um LLM. Nossa stack roda o resto.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Voce envia URL + queries</h3>
+        <p>Sua pagina, seu email, WhatsApp e ate 3 perguntas relevantes que clientes perguntariam.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Paga R$ 29 via PIX</h3>
+        <p>Pagamento rapido e seguro. Apos a confirmacao, nosso sistema comeca o processamento em segundos.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Rodamos em 3 LLMs</h3>
+        <p>ChatGPT search, Perplexity e Gemini. Registramos se sua URL foi citada, posicao e qualidade do snippet.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Score GEO + recomendacoes</h3>
+        <p>14 sinais auditados. Voce recebe PDF com nota, gaps e acoes priorizadas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRECO -->
+<section id="preco" style="background:#080808">
+  <div class="wrap">
+    <h2>Preco simples</h2>
+    <p class="section-sub">Sem mensalidade no snapshot. Cobramos uma vez, entregamos em minutos.</p>
+    <div class="pricing">
+      <div style="font-size:0.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600">Snapshot GEO</div>
+      <div class="price">R$ 29<small>/analise</small></div>
+      <ul>
+        <li>1 URL analisada em 3 LLMs</li>
+        <li>Ate 3 queries customizadas</li>
+        <li>Score GEO com 14 sinais</li>
+        <li>Recomendacoes priorizadas</li>
+        <li>PDF entregue por email em 5 min</li>
+      </ul>
+      <a href="#comprar"><button class="btn-primary" style="width:100%;margin-top:12px">Comprar agora</button></a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARIO -->
+<section id="comprar">
+  <div class="wrap">
+    <div class="form-card">
+      <h3>Comprar Snapshot GEO</h3>
+      <p class="help">Preenche abaixo. Em seguida vamos te levar pra tela de pagamento PIX.</p>
+
+      <form id="orderForm" autocomplete="on">
+        <div class="field">
+          <label for="url">URL da pagina analisada *</label>
+          <input type="url" id="url" name="url" placeholder="https://exemplo.com.br/servicos" required>
+          <div class="hint">Coloque o endereco completo, com https://</div>
+        </div>
+
+        <div class="field">
+          <label for="queries">Ate 3 perguntas que seus clientes perguntariam (uma por linha) *</label>
+          <textarea id="queries" name="queries" placeholder="como escolher um contador para abrir empresa&#10;melhor advogado trabalhista em sao paulo&#10;quanto custa um site profissional em 2026" required></textarea>
+          <div class="hint">Seja especifico. Queries muito genericas sao dificeis de analisar.</div>
+        </div>
+
+        <div class="field">
+          <label for="email">Seu email *</label>
+          <input type="email" id="email" name="email" placeholder="voce@empresa.com.br" required>
+          <div class="hint">O PDF e atualizacoes vao pra esse email.</div>
+        </div>
+
+        <div class="field">
+          <label for="whatsapp">WhatsApp (opcional)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="(11) 99999-9999">
+          <div class="hint">Pra avisar quando o relatorio estiver pronto.</div>
+        </div>
+
+        <button type="submit" id="submitBtn">Continuar para pagamento PIX</button>
+        <div id="formMsg"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:#080808">
+  <div class="wrap">
+    <h2>Perguntas frequentes</h2>
+    <p class="section-sub">O que as pessoas perguntam antes de comprar.</p>
+    <div class="faq">
+      <details>
+        <summary>Em quanto tempo recebo o relatorio?</summary>
+        <p>Em ate 5 minutos apos a confirmacao do pagamento. O processamento roda em tempo real nas 3 LLMs.</p>
+      </details>
+      <details>
+        <summary>O que tem no relatorio?</summary>
+        <p>Score GEO de 0 a 100 com grade A-F, 14 sinais tecnicos auditados (resposta direta, FAQPage schema, autor, paragrafos, stats etc), lista de recomendacoes priorizadas e prints das citacoes encontradas em cada LLM.</p>
+      </details>
+      <details>
+        <summary>O que e GEO?</summary>
+        <p>Generative Engine Optimization — conjunto de praticas que aumentam a chance da sua pagina ser citada como fonte em respostas de ChatGPT search, Perplexity, Gemini e AI Overview. Detalhes em <a href="/lab/geo-em-portugues-geo/">nosso artigo</a>.</p>
+      </details>
+      <details>
+        <summary>Se minha pagina nao for citada em nenhuma LLM, o relatorio faz sentido?</summary>
+        <p>Sim — na verdade e quando o relatorio e mais util. Listamos as 3-5 principais razoes pelas quais nao foi citada e as correcoes com maior impacto.</p>
+      </details>
+      <details>
+        <summary>Vou precisar de ajuda tecnica pra aplicar as recomendacoes?</summary>
+        <p>Recomendacoes incluem exemplos e referencias. A maioria e aplicavel por qualquer gerente de conteudo. Itens tecnicos (schema JSON-LD, llms.txt) requerem acesso ao HTML.</p>
+      </details>
+      <details>
+        <summary>Tem garantia?</summary>
+        <p>7 dias. Se nao achar util, devolvemos 100%.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>SEO Express por <a href="https://sakaguchi.ia.br">Sakaguchi IA</a> · <a href="/lab/">Laboratorio GEO</a> · <a href="mailto:contato@sakaguchi.ia.br">contato@sakaguchi.ia.br</a></p>
+</footer>
+
+<script>
+const BACKEND_URL = 'https://zapago.com.br/seoapi';
+
+const form = document.getElementById('orderForm');
+const btn = document.getElementById('submitBtn');
+const msgDiv = document.getElementById('formMsg');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  msgDiv.innerHTML = '';
+  btn.disabled = true;
+  btn.textContent = 'Processando...';
+
+  const queries = document.getElementById('queries').value
+    .split('\n').map(s => s.trim()).filter(Boolean).slice(0, 3);
+
+  if (queries.length === 0) {
+    showError('Informa pelo menos 1 pergunta.');
+    return;
+  }
+
+  try {
+    const res = await fetch(BACKEND_URL + '/api/geo/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: document.getElementById('email').value,
+        whatsapp: document.getElementById('whatsapp').value || null,
+        url: document.getElementById('url').value,
+        queries,
+        plan: 'snapshot',
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      showError(data.error || 'Erro no pedido');
+      return;
+    }
+
+    // Sucesso: redireciona pra pagina de pagamento (placeholder ate Parte 2 plugar gateway)
+    sessionStorage.setItem('seoexpress_last_order', JSON.stringify(data.order));
+    window.location.href = '/geo/pagamento/?id=' + data.order.id;
+
+  } catch (err) {
+    showError('Erro de conexao: ' + err.message);
+  }
+});
+
+function showError(text) {
+  msgDiv.className = 'msg error';
+  msgDiv.textContent = text;
+  btn.disabled = false;
+  btn.textContent = 'Continuar para pagamento PIX';
+}
+</script>
+
+</body>
+</html>

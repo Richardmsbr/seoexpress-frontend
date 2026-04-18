@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha conta — SEO Express GEO</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;padding:40px 20px}
+.wrap{max-width:860px;margin:0 auto}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+.logo{font-size:1.2rem;font-weight:700}
+.logo .seo{color:#00c853}
+.nav a{color:#a0a0a0;text-decoration:none;font-size:0.9rem}
+.nav a:hover{color:#00c853}
+
+h1{font-size:1.8rem;margin-bottom:8px}
+.muted{color:#a0a0a0;font-size:0.95rem;margin-bottom:24px}
+
+.card{background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:28px;margin-bottom:16px}
+
+/* LOGIN FORM */
+.login{max-width:420px;margin:40px auto}
+.login h2{text-align:center;margin-bottom:8px}
+.login p{text-align:center;color:#a0a0a0;margin-bottom:24px;font-size:0.9rem}
+.login input{width:100%;background:#0a0a0a;border:1px solid rgba(255,255,255,0.1);color:#fff;padding:12px 14px;border-radius:8px;font-size:1rem;margin-bottom:12px}
+.login input:focus{outline:none;border-color:#00c853}
+.login button{width:100%;padding:14px;background:#00c853;color:#0a0a0a;border:none;border-radius:10px;font-weight:700;font-size:1rem;cursor:pointer}
+.login button:hover:not(:disabled){background:#69f0ae}
+.login button:disabled{opacity:0.5}
+.msg{margin-top:16px;padding:12px;border-radius:8px;font-size:0.9rem;text-align:center}
+.msg.ok{background:rgba(0,200,83,0.1);border:1px solid #00c853;color:#69f0ae}
+.msg.err{background:rgba(255,23,68,0.1);border:1px solid #ff1744;color:#ff8a80}
+
+/* ORDERS LIST */
+.order{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:20px;background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:10px;margin-bottom:10px}
+.order .info h3{font-size:1rem;margin-bottom:4px}
+.order .info .url{color:#a0a0a0;font-size:0.85rem;word-break:break-all}
+.order .meta{display:flex;gap:16px;margin-top:8px;font-size:0.8rem;color:#666}
+.order .meta span{display:inline-block}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.badge.pending{background:rgba(255,214,0,0.1);color:#ffd600}
+.badge.paid{background:rgba(0,200,83,0.1);color:#00c853}
+.badge.processing{background:rgba(0,200,255,0.1);color:#00b8d4}
+.badge.delivered{background:rgba(0,200,83,0.2);color:#69f0ae}
+.badge.failed{background:rgba(255,23,68,0.1);color:#ff8a80}
+.order-actions{display:flex;flex-direction:column;gap:6px}
+.btn{padding:8px 14px;background:#00c853;color:#0a0a0a;text-decoration:none;border-radius:6px;font-size:0.85rem;font-weight:600;white-space:nowrap}
+.btn-sec{background:transparent;color:#a0a0a0;border:1px solid rgba(255,255,255,0.12)}
+.btn:hover{background:#69f0ae}
+
+.empty{text-align:center;padding:60px 20px;color:#666}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a href="/" class="logo"><span class="seo">SEO</span>Express</a>
+    <a href="/geo/">← Voltar pra GEO</a>
+  </nav>
+
+  <div id="loginView" class="login" style="display:none">
+    <h2>Minha conta</h2>
+    <p>Informa seu email. Mandamos um link rapido pra acessar seus relatorios.</p>
+    <form id="magicForm">
+      <input type="email" id="emailInput" placeholder="voce@empresa.com.br" required>
+      <button type="submit" id="magicBtn">Enviar link de acesso</button>
+      <div id="magicMsg"></div>
+    </form>
+  </div>
+
+  <div id="ordersView" style="display:none">
+    <h1>Meus relatorios GEO</h1>
+    <p class="muted" id="userEmail"></p>
+    <div id="ordersList"></div>
+    <p style="text-align:center;margin-top:30px">
+      <a href="/geo/" style="color:#00c853">Comprar novo snapshot</a>
+    </p>
+  </div>
+
+  <div id="loading" style="text-align:center;padding:60px;color:#666">Carregando...</div>
+</div>
+
+<script>
+const BACKEND_URL = 'https://zapago.com.br/seoapi';
+const params = new URLSearchParams(window.location.search);
+const token = params.get('token');
+
+const $ = (id) => document.getElementById(id);
+
+if (token) {
+  loadAccount(token);
+} else {
+  $('loading').style.display = 'none';
+  $('loginView').style.display = 'block';
+}
+
+async function loadAccount(token) {
+  try {
+    const res = await fetch(BACKEND_URL + '/api/geo/account?token=' + encodeURIComponent(token));
+    const data = await res.json();
+    if (!res.ok) {
+      $('loading').style.display = 'none';
+      $('loginView').style.display = 'block';
+      $('magicMsg').className = 'msg err';
+      $('magicMsg').textContent = data.error || 'Link invalido';
+      return;
+    }
+    renderOrders(data);
+  } catch (e) {
+    $('loading').innerHTML = '<p style="color:#ff8a80">Erro de conexao</p>';
+  }
+}
+
+function renderOrders(data) {
+  $('loading').style.display = 'none';
+  $('ordersView').style.display = 'block';
+  $('userEmail').textContent = data.email;
+
+  const list = $('ordersList');
+  if (data.orders.length === 0) {
+    list.innerHTML = '<div class="empty"><p>Nenhum pedido ainda.</p><p><a href="/geo/" style="color:#00c853">Comprar primeiro snapshot</a></p></div>';
+    return;
+  }
+
+  list.innerHTML = data.orders.map(o => {
+    const statusText = {
+      pending_payment: 'Aguardando pagamento',
+      paid: 'Pagamento confirmado',
+      processing: 'Processando',
+      delivered: 'Pronto',
+      failed: 'Erro',
+    }[o.status] || o.status;
+
+    const actions = o.status === 'delivered'
+      ? `<a class="btn" href="${BACKEND_URL}/api/geo/orders/${o.id}/pdf">Baixar PDF</a>
+         <a class="btn btn-sec" href="/geo/pagamento/?id=${o.id}">Ver detalhes</a>`
+      : `<a class="btn btn-sec" href="/geo/pagamento/?id=${o.id}">Ver detalhes</a>`;
+
+    return `
+      <div class="order">
+        <div class="info">
+          <h3>${o.plan.charAt(0).toUpperCase() + o.plan.slice(1)} · ${o.amount_brl}</h3>
+          <div class="url">${o.url}</div>
+          <div class="meta">
+            <span>${new Date(o.created_at).toLocaleString('pt-BR')}</span>
+            <span class="badge ${o.status}">${statusText}</span>
+          </div>
+        </div>
+        <div class="order-actions">${actions}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+$('magicForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = $('emailInput').value.trim();
+  $('magicBtn').disabled = true;
+  $('magicBtn').textContent = 'Enviando...';
+  $('magicMsg').textContent = '';
+
+  try {
+    const res = await fetch(BACKEND_URL + '/api/geo/account/magic-link', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+    $('magicMsg').className = 'msg ok';
+    $('magicMsg').textContent = data.message || 'Se esse email tem pedidos, enviamos o link.';
+  } catch (err) {
+    $('magicMsg').className = 'msg err';
+    $('magicMsg').textContent = 'Erro de conexao. Tenta de novo.';
+  } finally {
+    $('magicBtn').disabled = false;
+    $('magicBtn').textContent = 'Enviar link de acesso';
+  }
+});
+</script>
+</body>
+</html>
