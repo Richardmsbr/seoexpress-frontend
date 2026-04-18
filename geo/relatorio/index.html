@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Relatório GEO — SEO Express</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0a;--accent:#00c853;--accent-light:#69f0ae;--text:#fff;--muted:#a0a0a0;--card:#111;--border:rgba(255,255,255,0.08);--danger:#ff1744}
+body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:40px 20px;min-height:100vh}
+.wrap{max-width:860px;margin:0 auto}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+.logo{font-size:1.2rem;font-weight:700}
+.logo .seo{color:var(--accent)}
+.nav a{color:var(--muted);text-decoration:none;font-size:0.9rem}
+.nav a:hover{color:var(--accent)}
+h1{font-size:1.8rem;margin-bottom:8px}
+.muted{color:var(--muted);font-size:0.95rem}
+.score-box{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;margin:24px 0}
+.score-box .num{font-size:4rem;font-weight:800;color:var(--accent);line-height:1}
+.score-box .num small{font-size:1rem;color:var(--muted);font-weight:400}
+.score-box .grade{display:inline-block;background:var(--accent);color:#0a0a0a;padding:3px 12px;border-radius:16px;font-size:0.8rem;font-weight:700;margin-bottom:8px;letter-spacing:0.5px}
+.score-box .desc{color:var(--muted);font-size:0.95rem;line-height:1.5}
+.section{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px}
+.section h2{font-size:1.2rem;margin-bottom:12px;color:var(--accent)}
+.section h3{font-size:1.05rem;margin:20px 0 10px;color:var(--text)}
+.section p{color:#ddd;margin-bottom:12px}
+.section ol, .section ul{margin-left:22px;color:#ddd}
+.section li{margin-bottom:10px}
+.signals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.signal{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,0.03);border-radius:8px;font-size:0.85rem}
+.signal.pass{border-left:3px solid var(--accent)}
+.signal.fail{border-left:3px solid var(--danger);opacity:0.75}
+.signal .mark{width:20px;flex-shrink:0;font-weight:700}
+.signal.pass .mark{color:var(--accent)}
+.signal.fail .mark{color:var(--danger)}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{display:inline-block;padding:12px 20px;background:var(--accent);color:#0a0a0a;text-decoration:none;border-radius:8px;font-weight:700;font-size:0.95rem;border:none;cursor:pointer}
+.btn-sec{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn:hover{background:var(--accent-light)}
+.btn-sec:hover{border-color:var(--accent);color:var(--accent)}
+.loading{text-align:center;padding:80px;color:var(--muted)}
+.err-box{background:rgba(255,23,68,0.08);border:1px solid var(--danger);border-radius:10px;padding:20px;color:#ff8a80}
+.tracker-engine{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.tracker-engine:last-child{border-bottom:none}
+.tracker-engine .eng{font-weight:600;text-transform:capitalize}
+.tracker-engine .res.hit{color:var(--accent)}
+.tracker-engine .res.miss{color:var(--muted)}
+.tracker-engine .res.err{color:#ff8a80;font-size:0.85rem}
+@media(max-width:640px){.signals{grid-template-columns:1fr}.score-box{grid-template-columns:1fr;text-align:center}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a href="/" class="logo"><span class="seo">SEO</span>Express</a>
+    <a href="/geo/conta/">Minha conta →</a>
+  </nav>
+
+  <div id="loading" class="loading">Carregando relatório…</div>
+
+  <div id="report" style="display:none">
+    <h1>Seu relatório GEO está pronto</h1>
+    <p class="muted" id="orderMeta"></p>
+
+    <div class="score-box">
+      <div>
+        <div class="num" id="scoreNum">—</div>
+      </div>
+      <div>
+        <div class="grade" id="scoreGrade">—</div>
+        <div class="desc" id="scoreDesc"></div>
+        <div class="cta-row">
+          <a class="btn" id="pdfBtn" href="#">Baixar PDF completo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="summarySection">
+      <h2>Resumo executivo</h2>
+      <p id="summaryText">—</p>
+    </div>
+
+    <div class="section" id="actionsSection">
+      <h2>Top 3 ações priorizadas</h2>
+      <ol id="actionsList"></ol>
+    </div>
+
+    <div class="section" id="impactSection">
+      <h2>Impacto estimado</h2>
+      <p id="impactText">—</p>
+    </div>
+
+    <div class="section" id="trackerSection">
+      <h2>Como as IAs enxergam sua página hoje</h2>
+      <div id="trackerList"></div>
+    </div>
+
+    <div class="section" id="signalsSection">
+      <h2>14 sinais auditados</h2>
+      <div class="signals" id="signalsList"></div>
+    </div>
+
+    <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-top:40px">
+      Relatório gerado pelo <strong>SEO Express</strong>. Dúvidas? <a href="mailto:contato@sakaguchi.ia.br" style="color:var(--accent)">contato@sakaguchi.ia.br</a>
+    </p>
+  </div>
+
+  <div id="errBox" class="err-box" style="display:none"></div>
+</div>
+
+<script>
+const BACKEND_URL = 'https://zapago.com.br/seoapi';
+const params = new URLSearchParams(window.location.search);
+const orderId = params.get('id');
+
+if (!orderId) showErr('ID do pedido não informado.');
+else loadReport();
+
+async function loadReport() {
+  try {
+    const res = await fetch(BACKEND_URL + '/api/geo/orders/' + orderId);
+    const data = await res.json();
+    if (!res.ok) return showErr(data.error || 'Erro ao carregar relatório.');
+    if (data.order.status !== 'delivered') {
+      return showErr('Relatório ainda em processamento. Recarrega em alguns segundos.');
+    }
+    if (!data.report) return showErr('Relatório não encontrado.');
+    render(data.order, data.report);
+  } catch (e) {
+    showErr('Erro de conexão: ' + e.message);
+  }
+}
+
+function showErr(msg) {
+  document.getElementById('loading').style.display = 'none';
+  const box = document.getElementById('errBox');
+  box.style.display = 'block';
+  box.innerHTML = '<strong>Ops</strong><br>' + msg;
+}
+
+async function render(order, report) {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('report').style.display = 'block';
+
+  document.getElementById('orderMeta').innerHTML =
+    'Pedido: <code>' + order.id + '</code> · ' +
+    new Date(order.delivered_at).toLocaleString('pt-BR') + ' · URL: ' + order.url;
+
+  document.getElementById('scoreNum').innerHTML = report.geo_score + '<small>/100</small>';
+  document.getElementById('scoreGrade').textContent = 'Grade ' + report.geo_grade;
+  document.getElementById('scoreDesc').textContent = {
+    A: 'Excelente. Sua página já tem os sinais certos pra ser citada por IAs.',
+    B: 'Bom. Falta pouco pra virar uma fonte consistente.',
+    C: 'Mediano. Tem espaço claro pra melhorar.',
+    D: 'Precisa de ajustes. A maioria dos sinais GEO não está implementada.',
+    F: 'Começo do zero. Nada do que IAs buscam está configurado ainda.',
+  }[report.geo_grade] || '';
+
+  document.getElementById('pdfBtn').href = BACKEND_URL + '/api/geo/orders/' + order.id + '/pdf';
+
+  // Analise IA e recomendacoes
+  let recs = report.recommendations;
+  let aiAnalysis = null, technical = [];
+  if (recs && typeof recs === 'object') {
+    if (Array.isArray(recs)) {
+      technical = recs;
+    } else {
+      technical = recs.technical || [];
+      aiAnalysis = recs.ai_analysis || null;
+    }
+  }
+
+  if (aiAnalysis) {
+    document.getElementById('summaryText').textContent = aiAnalysis.executive_summary || '';
+    const ol = document.getElementById('actionsList');
+    ol.innerHTML = (aiAnalysis.top_3_actions || []).map(a => '<li>' + escapeHtml(a) + '</li>').join('');
+    document.getElementById('impactText').textContent = aiAnalysis.estimated_impact || '';
+  } else {
+    document.getElementById('summarySection').style.display = 'none';
+    document.getElementById('impactSection').style.display = 'none';
+    const ol = document.getElementById('actionsList');
+    ol.innerHTML = technical.slice(0, 3).map(a => '<li>' + escapeHtml(a) + '</li>').join('');
+  }
+
+  // Tracker (buscar detalhes do report)
+  // Como report.recommendations nao inclui tracker_results, nao temos aqui.
+  // Esconder se vazio ou mostrar mensagem generica.
+  const tl = document.getElementById('trackerList');
+  tl.innerHTML = '<p class="muted">Rastreamento de citações no ChatGPT, Perplexity e Gemini. Detalhe completo no PDF.</p>';
+
+  // Sinais (top 14 ou todos)
+  // Como nao temos direto aqui, mostra mensagem + link pro PDF
+  document.getElementById('signalsList').innerHTML =
+    '<p class="muted" style="grid-column:1/-1">' +
+    'A lista completa dos 14 sinais técnicos (resposta direta, schema FAQ, autor, paragrafos, dados, etc) está no PDF. <a href="' +
+    BACKEND_URL + '/api/geo/orders/' + order.id + '/pdf" style="color:var(--accent)">Baixar agora</a>.' +
+    '</p>';
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+</script>
+</body>
+</html>
