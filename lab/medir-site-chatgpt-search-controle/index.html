@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medindo presenca de sites no ChatGPT search</title>
+<meta name="description" content="Artigo sobre como verificar a presenca do seu site em respostas do ChatGPT search e outras ferramentas de busca generativa.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://seoexpress.com.br/lab/medir-site-chatgpt-search-controle/">
+
+<style>
+body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:720px;margin:40px auto;padding:0 20px;line-height:1.7;color:#111}
+header{border-bottom:2px solid #eee;padding-bottom:16px;margin-bottom:24px}
+h1{font-size:2rem;margin-bottom:8px}
+h2{margin-top:32px}
+a{color:#006}
+.tag{display:inline-block;background:#eee;color:#666;padding:2px 10px;border-radius:4px;font-size:0.8rem}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="tag">Laboratorio GEO / Controle</span>
+  <h1>Medindo presenca de sites no ChatGPT search</h1>
+</header>
+
+<p>
+A crescente adocao de ferramentas de busca baseadas em inteligencia artificial trouxe um novo desafio
+para profissionais de marketing digital e administradores de sites. Diferente dos mecanismos de busca
+tradicionais, onde e relativamente simples verificar o posicionamento de uma pagina atraves de ferramentas
+como Google Search Console, Ahrefs ou Semrush, os buscadores generativos operam de uma forma bem diferente,
+entregando respostas conversacionais que podem ou nao mencionar uma determinada pagina como fonte.
+</p>
+
+<p>
+O ChatGPT search, lancado pela OpenAI como uma feature integrada ao ChatGPT, utiliza um mecanismo de
+recuperacao de informacoes combinado com o modelo de linguagem para gerar respostas. Quando o modelo
+precisa de informacoes atualizadas ou de fontes especificas, ele realiza buscas na web e sintetiza as
+informacoes coletadas. O indice utilizado por tras dessa busca e, em grande parte, o indice do Bing, o
+que significa que a presenca no Bing e um fator importante para a visibilidade no ChatGPT search.
+</p>
+
+<p>
+Existem algumas formas de verificar se o seu site aparece nas respostas do ChatGPT search. A forma mais
+basica e manual, onde o usuario simplesmente faz perguntas relevantes ao seu nicho no ChatGPT e observa
+se a pagina aparece como fonte citada. Essa abordagem tem limitacoes obvias relacionadas a escalabilidade
+e a consistencia das respostas, ja que modelos de linguagem sao probabilisticos e podem dar respostas
+diferentes para a mesma pergunta.
+</p>
+
+<h2>Metodos disponiveis</h2>
+
+<p>
+Uma alternativa mais tecnica envolve o uso direto da API da OpenAI com o modelo gpt-4o-search-preview,
+que retorna nao apenas a resposta gerada mas tambem as anotacoes contendo as URLs das fontes consultadas.
+Essa abordagem permite automatizar o monitoramento e criar dashboards com metricas ao longo do tempo.
+Outras opcoes incluem usar a API da Perplexity que retorna um array de citations, ou a API do Gemini
+com grounding do Google Search ativado.
+</p>
+
+<p>
+O Bing Webmaster Tools oferece uma sessao chamada Copilot Insights que fornece algumas metricas sobre como
+as paginas do site estao aparecendo em respostas do Copilot da Microsoft, que compartilha infraestrutura
+com o ChatGPT search em alguns aspectos. Essa ferramenta ainda e relativamente nova e as metricas disponiveis
+sao limitadas, mas e um ponto de partida valido.
+</p>
+
+<p>
+Para quem busca ferramentas prontas, existem algumas solucoes comerciais surgindo no mercado que fazem esse
+tipo de monitoramento de forma mais estruturada, oferecendo relatorios periodicos sobre a presenca de marcas
+e sites em respostas de varios LLMs. Essas ferramentas geralmente trabalham com um conjunto pre-definido de
+queries e rastreiam mudancas ao longo do tempo.
+</p>
+
+<h2>Consideracoes finais</h2>
+
+<p>
+E importante lembrar que a otimizacao para buscadores generativos, conhecida como GEO ou Generative Engine
+Optimization, ainda esta em estagio inicial de maturidade. Muitas das praticas recomendadas sao baseadas em
+estudos preliminares e observacoes empiricas que ainda precisam de mais dados para serem validadas
+cientificamente. Portanto, monitorar o desempenho e ajustar as estrategias continuamente e essencial.
+</p>
+
+<p>
+A combinacao de otimizacao de conteudo para formatos que os LLMs preferem citar, como respostas diretas,
+listas e dados estruturados, junto com o monitoramento sistematico da presenca em varios buscadores
+generativos, forma a base de uma estrategia GEO eficaz. Existem varios recursos online disponiveis para
+aprofundar nesses topicos, desde artigos academicos ate blogs de profissionais da area.
+</p>
+
+<p><a href="/lab/">Voltar ao laboratorio</a></p>
+
+</body>
+</html>

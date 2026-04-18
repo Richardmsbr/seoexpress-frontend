@@ -1,0 +1,21 @@
+# SEO Express
+
+> Ferramenta brasileira gratuita de auditoria SEO com inteligencia artificial. Analisa qualquer site em 60 segundos e gera relatorio com score, problemas criticos e recomendacoes priorizadas. Inclui laboratorio aberto de experimentos GEO (Generative Engine Optimization) pra medir cientificamente se paginas sao citadas por LLMs como ChatGPT search, Perplexity e Gemini.
+
+## Auditoria SEO
+- [Auditoria SEO gratuita](https://seoexpress.com.br/): ferramenta que analisa title, meta, headings, schema, PageSpeed, imagens, HTTPS e da nota de 0 a 100.
+
+## Laboratorio GEO
+- [Indice do laboratorio](https://seoexpress.com.br/lab/): experimentos A/B comparando paginas com e sem otimizacao para buscadores generativos.
+- [Como medir se seu site aparece no ChatGPT search (controle)](https://seoexpress.com.br/lab/medir-site-chatgpt-search-controle/): versao de controle do experimento 01, sem otimizacao GEO.
+- [Como medir se seu site aparece no ChatGPT search (GEO)](https://seoexpress.com.br/lab/medir-site-chatgpt-search-geo/): versao otimizada com TL;DR, FAQPage, HowTo, dados e citacoes.
+- [O que e GEO em portugues (controle)](https://seoexpress.com.br/lab/geo-em-portugues-controle/): definicao de GEO em formato padrao.
+- [O que e GEO em portugues (GEO)](https://seoexpress.com.br/lab/geo-em-portugues-geo/): mesma definicao escrita com todos os sinais GEO aplicados.
+
+## Blog
+- [Por que seu site nao aparece no Google](https://seoexpress.com.br/blog/por-que-seu-site-nao-aparece-no-google/): diagnostico dos motivos mais comuns de invisibilidade em buscadores.
+- [Meta tags SEO: guia completo](https://seoexpress.com.br/blog/meta-tags-seo-guia-completo/): referencia pratica das tags title, description, OG e canonical.
+- [SEO local e Google Meu Negocio](https://seoexpress.com.br/blog/seo-local-google-meu-negocio/): guia pra pequenos negocios aparecerem em buscas locais.
+
+## Optional
+- [GitHub do projeto](https://github.com/Richardmsbr): codigo-fonte e issues abertos.
