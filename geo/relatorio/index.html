@@ -234,9 +234,17 @@ async function render(order, report) {
       document.getElementById('competitorsSection').style.display = 'block';
       document.getElementById('competitorsNote').textContent = aiAnalysis.competitors_note || '';
       const clist = document.getElementById('competitorsList');
-      clist.innerHTML = (aiAnalysis.competitors || []).map(c =>
-        '<div style="padding:8px 0;border-bottom:1px solid var(--border)"><a href="' + c.url + '" target="_blank" rel="noopener" style="color:#8a9dff;text-decoration:none">' + escapeHtml(c.domain) + ' →</a></div>'
-      ).join('');
+      clist.innerHTML = (aiAnalysis.competitors || []).map(c => {
+        const sourceLabel = c.source === 'tracker'
+          ? '<span style="font-size:0.7rem;background:rgba(0,200,83,0.15);color:var(--accent);padding:2px 8px;border-radius:10px;margin-left:8px">citado hoje</span>'
+          : '<span style="font-size:0.7rem;background:rgba(255,214,0,0.12);color:#ffd600;padding:2px 8px;border-radius:10px;margin-left:8px">provavel</span>';
+        const reasonHtml = c.reason ? '<div style="color:var(--muted);font-size:0.85rem;margin-top:4px">' + escapeHtml(c.reason) + '</div>' : '';
+        return '<div style="padding:12px 0;border-bottom:1px solid var(--border)">' +
+          '<a href="' + c.url + '" target="_blank" rel="noopener" style="color:#8a9dff;text-decoration:none;font-weight:600">' + escapeHtml(c.domain) + ' →</a>' +
+          sourceLabel +
+          reasonHtml +
+          '</div>';
+      }).join('');
     }
     if (Array.isArray(aiAnalysis.indexation_checklist) && aiAnalysis.indexation_checklist.length) {
       document.getElementById('indexationSection').style.display = 'block';
