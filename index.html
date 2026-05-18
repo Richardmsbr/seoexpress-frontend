@@ -843,7 +843,13 @@ async function runAudit() {
 
     if (!response.ok) {
       const errData = await response.json().catch(() => ({}));
-      throw new Error(errData.message || 'Erro ao analisar o site. Tente novamente.');
+      let msg = errData.error || errData.message;
+      if (!msg) msg = 'Erro ao analisar o site. Tente novamente.';
+      if (errData.retry_after_seconds) {
+        const mins = Math.ceil(errData.retry_after_seconds / 60);
+        msg += ` Tente novamente em ${mins} ${mins === 1 ? 'minuto' : 'minutos'}.`;
+      }
+      throw new Error(msg);
     }
 
     const data = await response.json();
