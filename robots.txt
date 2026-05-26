@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+# Resíduo da hospedagem antiga (cPanel) — não recrawlear
+Disallow: /cgi-sys/
+Disallow: /cgi-bin/
 
 # LLM e AI crawlers (liberados explicitamente)
 User-agent: GPTBot
